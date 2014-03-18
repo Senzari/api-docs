@@ -9,6 +9,10 @@ toc_footers:
  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 ---
 
+# Getting Started
+
+Welcome to the MusicGraph API! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph structure that you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.
+
 # Introduction
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
