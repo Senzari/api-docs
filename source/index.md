@@ -13,6 +13,18 @@ toc_footers:
 
 Welcome to the MusicGraph API! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph structure that you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.
 
+The base URL for the MusicGraph API is:
+
+`http://api.musicgraph.com/api/v2`
+
+## API Request
+
+<aside class="notice">
+The API key used in this document is for demonstration purposes only. It should not be used for any other application as it is rate limited.
+</aside>
+
+All requests to the MusicGraph API must be authenticated with an API key. To obtain an API key you must create an account with us. You can [sign up for a free account here](https://developer.musicgraph.com/#plans "Sign Up for a Developer Key").
+
 # Introduction
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
