@@ -237,7 +237,7 @@ Method | Endpoint | Description
 
 ### Artist Search Operations
 
-Name | Description
+Parameter | Description
 -----|------------
 **name** | Return artists who match the name
 **similar_to** | Return artists that are similar to the given name
@@ -247,7 +247,7 @@ Name | Description
 
 ### Artist Search Filters
 
-Name | Description
+Parameter | Description
 -----|------------
 **decade** | Return artists who were active during a given decade; [possible values]()
 **gender** | Return artists filtered by gender; [possible values]()
@@ -255,61 +255,12 @@ Name | Description
 **influenced** | Return artists who influenced a given artist
 **influenced_by** | Return artists who were influenced by a given artist
 
-### Artist Metadata
-
-Endpoint | Description
----------|------------
-`/api/v2/<artist_id>` | Return metadata for this artist
-`/api/v2/<artist_id>/albums` | Return albums by this artist
-`/api/v2/<artist_id>/tracks` | Return tracks by this artist
-
 ## Albums
-
-> *Search for top-rated albums by Dr. Dre...*
-
-```shell
-$ curl "http://api.musicgraph.com/api/v2/album/search&artist_name=Dr.+Dre&top_rated=true&limit=3&fields=id,title,performer_name,release_date&api_key=APIKEY"
-```
-
-```http
-HTTP/1.1 200 OK
-```
-
-```json
-{
-  "status":{
-    "api":"v1",
-    "code":0,
-    "message":"Success"
-  },
-  "data":[
-    {
-      "id":"b4e26364-ba91-baaf-410f-c4c64cfa7a43",
-      "title":"Chronicles: Death Row Classics",
-      "performer_name":"Dr. Dre",
-      "release_date":"2006-06-27"
-    },
-    {
-      "id":"05ecf2a8-3ed3-3a95-0d77-243b31d1a804",
-      "title":"Chronicle: Best of the Works",
-      "performer_name":"Dr. Dre",
-      "release_date":"2002-05-28"
-    },
-    {
-      "id":"c7556281-91ae-c0cf-9eee-d1937e014253",
-      "title":"2001",
-      "number_of_tracks":"22",
-      "performer_name":"Dr. Dre",
-      "release_date":"1999-11-16"
-    }
-  ]
-}
-```
 
 > *Find tracks featured on Michael Jackson's "Thriller"...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,name&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&api_key=APIKEY"
 ```
 
 ```http
@@ -387,11 +338,22 @@ HTTP/1.1 200 OK
 }
 ```
 
-`GET http://api.musicgraph.com/api/v2/artist/search`
+### Album Metadata Endpoints
+
+Method | Endpoint | Description
+-------|----------|------------
+`GET` | `/<id>` | Return metadata for an album by id
+`GET` | `/<id>/tracks` | List this album's tracks with the `/tracks` connection
+
+### Album Search Endpoint
+
+Method | Endpoint | Description
+-------|----------|------------
+`GET` | `/album/search` | Execute any number of search operations (described below)
 
 ### Album Search Operations
 
-Name | Description
+Parameter | Description
 -----|------------
 **name** | Find albums by name
 **artist_name** | Find albums by an artist
@@ -400,7 +362,7 @@ Name | Description
 
 ### Album Search Filters
 
-Name | Description
+Parameter | Description
 -----|------------
 **country** | Filter album search results by country
 **decade** | Filter album search results by release date; [possible values]()
@@ -408,19 +370,12 @@ Name | Description
 **genre** | Filter album search results by artist gender; [possible values]()
 **top_rated** | Return only top-rated albums; possible values are **true** and **false**
 
-### Album Metadata
+## Tracks
 
-Endpoint | Description
----------|------------
-`/api/v2/<album_id>` | Return metadata for this album
-`/api/v2/<album_id>/tracks` | Return this album's tracks
-
-## Albums
-
-> *...*
+> *Find tracks by Eminem that feature Rihanna as a guest vocalist...*
 
 ```shell
-$ curl "&limit=3&fields=id,name&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&featuring_artist=rihanna&limit=1&fields=id,title,artist_name,album_title&api_key=APIKEY"
 ```
 
 ```http
@@ -430,31 +385,25 @@ HTTP/1.1 200 OK
 ```json
 {
   "status":{
-    "api":"v2",
+    "api":"v1",
     "code":0,
     "message":"Success"
   },
   "data":[
     {
-      "id":"629fcb4d-ae9e-dfde-593c-f75d7659ee9d",
-      "name":"Frank Zappa"
-    },
-    {
-      "id":"e4b5e4d8-a6b5-11e0-b446-00251188dd67",
-      "name":"Grateful Dead"
-    },
-    {
-      "id":"ee29f4f9-a6b5-11e0-b446-00251188dd67",
-      "name":"Leslie West"
+      "id":"f4fe3ba0-c599-157f-3cc1-b45c038620eb",
+      "title":"Love the Way You Lie",
+      "artist_name":"Eminem",
+      "album_title":"Recovery"
     }
   ]
 }
 ```
 
-> *...*
+> *Find tracks written by Eminem about his daughter, Hailie...*
 
 ```shell
-$ curl "&limit=3&fields=id,name&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&lyrics_phrase=hailie&limit=5&fields=title&api_key=APIKEY"
 ```
 
 ```http
@@ -464,54 +413,60 @@ HTTP/1.1 200 OK
 ```json
 {
   "status":{
-    "api":"v2",
+    "api":"v1",
     "code":0,
     "message":"Success"
   },
   "data":[
     {
-      "id":"7d8fc1bf-e7c5-4471-7b3a-bef5a9d25249",
-      "name":"Vanity"
+      "title":"Superman"
     },
     {
-      "id":"d64bcb0d-7c57-3099-07b7-bd47692ff2ab",
-      "name":"Cyndi Lauper"
+      "title":"You’Re Never Over"
     },
     {
-      "id":"e36675b4-a6b5-11e0-b446-00251188dd67",
-      "name":"Gwen Guthrie"
+      "title":"Hailie's Song"
+    },
+    {
+      "title":"Mockingbird"
+    },
+    {
+      "title":"Cleanin' Out My Closet"
     }
   ]
 }
 ```
 
-`GET http://api.musicgraph.com/api/v2/artist/search`
+### Track Metadata Endpoint
 
-### Album Search Operations
+Method | Endpoint | Description
+-------|----------|------------
+`GET` | `/<id>` | Return metadata for a track by id
 
-Name | Description
+### Track Search Endpoint
+
+Method | Endpoint | Description
+-------|----------|------------
+`GET` | `/track/search` | Execute any number of search operations (described below)
+
+### Track Search Operations
+
+Parameter | Description
 -----|------------
-**name** | Find albums by name
-**artist_name** | Find albums by an artist
-**produced_by** | Find albums that were produced by a producer
-**similar_to** | Find albums that are similar to another album
+**name** | Find tracks by name
+**artist_name** | Find tracks by an artist
+**composed_by** | Find tracks that were composed by an artist
+**featuring_artist** | Find tracks that feature an artist
 
-### Album Search Filters
+### Track Search Filters
 
-Name | Description
+Parameter | Description
 -----|------------
-**country** | Filter album search results by country
-**decade** | Filter album search results by release date; [possible values]()
-**genre** | Filter album search results by genre; [possible values]()
-**genre** | Filter album search results by artist gender; [possible values]()
-**top_rated** | Return only top-rated albums; possible values are **true** and **false**
-
-### Album Metadata
-
-Endpoint | Description
----------|------------
-`/api/v2/<album_id>` | Return metadata for this album
-`/api/v2/<album_id>/tracks` | Return this album's tracks
+**decade** | Filter track search results by release date; [possible values]()
+**genre** | Filter track search results by genre; [possible values]()
+**lyrics_keywords** | Filter track search results by lyric keywords
+**lyrics_lang** | Filter track search results by language
+**lyrics_phrase** | Filter track search results that contain an exact match
 
 # Terms And Conditions
 
