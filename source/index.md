@@ -3,10 +3,9 @@ title: API Reference
 
 toc_footers:
  - <a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key</a>
- - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 ---
 
-# Getting Started
+# Overview
 
 Welcome to the MusicGraph API documentation! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph structure that you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.
 
@@ -27,7 +26,7 @@ HTTP/1.1 200 OK
 ```json
 {
   "status":{
-    "api":"v1",
+    "api":"v2",
     "code":0,
     "message":"Success"
   },
@@ -74,7 +73,7 @@ HTTP/1.1 404 Not Found
 ```json
 {
   "status":{
-    "api":"v1",
+    "api":"v2",
     "code":7,
     "message":"Invalid ID"
   }
@@ -94,7 +93,7 @@ HTTP/1.1 403 Forbidden
 ```json
 {
   "status":{
-    "api":"v1",
+    "api":"v2",
     "code":1,
     "message":"Missing or Invalid API Key"
   }
@@ -114,7 +113,7 @@ HTTP/1.1 400 Bad Request
 ```json
 {
   "status":{
-    "api":"v1",
+    "api":"v2",
     "code":5,
     "message":"Invalid Search Operation"
   }
@@ -127,29 +126,29 @@ The MusicGraph API uses standard HTTP/1.1 response codes as described in [RFC 26
 
 Code | Message
 -----|--------
-`200`| Success
+`200` | Success
 `400` | Bad Request - the request is not valid
 `403` | Forbidden - you are not authorized to access that resource
 `404` | Not Found - The requested resource could not be found
 `429` | Too Many Requests - You have exceeded the rate limit associated with your API key
 `500` | Internal Server Error - Please [email us](mailto:) to report a service outage
 
-### Status Codes
+### JSON Status Codes
 
 Code | Message
 -----|--------
-**-1** | Internal Server Error
-**0** | Success
-**1** | Missing/ Invalid API Key
-**2** | This API key is not allowed to call this method
-**3** | Rate Limit Exceeded
-**4** | Not Supported
-**5** | Invalid Search Operation
-**6** | Invalid Connection Name
-**7** | Invalid MusicGraph ID
-**8** | Invalid Type
+`-1` | Internal Server Error
+`0` | Success
+`1` | Missing/ Invalid API Key
+`2` | This API key is not allowed to call this method
+`3` | Rate Limit Exceeded
+`4` | Not Supported
+`5` | Invalid Search Operation
+`6` | Invalid Connection Name
+`7` | Invalid MusicGraph ID
+`8` | Invalid Type
 
-# Graph Search
+# Search API
 
 ## Artists
 
@@ -257,7 +256,7 @@ Parameter | Description
 
 ## Albums
 
-> *Find tracks featured on Michael Jackson's "Thriller"...*
+> *Find tracks featured on Michael Jackson's "Thriller" album...*
 
 ```shell
 $ curl "http://api.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&api_key=APIKEY"
@@ -270,7 +269,7 @@ HTTP/1.1 200 OK
 ```json
 {
     "status": {
-        "api": "v1",
+        "api": "v2",
         "code": 0,
         "message": "Success"
     },
@@ -385,7 +384,7 @@ HTTP/1.1 200 OK
 ```json
 {
   "status":{
-    "api":"v1",
+    "api":"v2",
     "code":0,
     "message":"Success"
   },
@@ -413,7 +412,7 @@ HTTP/1.1 200 OK
 ```json
 {
   "status":{
-    "api":"v1",
+    "api":"v2",
     "code":0,
     "message":"Success"
   },
@@ -422,7 +421,7 @@ HTTP/1.1 200 OK
       "title":"Superman"
     },
     {
-      "title":"You’Re Never Over"
+      "title":"You're Never Over"
     },
     {
       "title":"Hailie's Song"
