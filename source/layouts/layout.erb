@@ -68,8 +68,25 @@ under the License.
   </head>
 
   <body class="<%= page_classes %>">
+
+    <div class="menu">
+      <%= link_to "#{image_tag("logo.png")}", "https://developer.musicgraph.com/" %>
+      <div class="menu-body">
+        <ul class="left">
+          <li><a href="https://developer.musicgraph.com/">Home</a></li>
+          <li><a href="#overview">Documentation</a></li>
+          <li><a href="https://developer.musicgraph.com/#plans">Plans</a></li>
+          <li><a href="https://developer.musicgraph.com/contact/">Contact Us</a></li>
+          <li><a href="http://demos.musicgraph.com/">Demos</a></li>
+        </ul>
+        <ul class="right">
+          <li><a href="https://developer.musicgraph.com/login">Login</a></li>
+          <li><a href="https://developer.musicgraph.com/#plans">Signup</a></li>
+        </ul>
+      </div>
+    </div>
+
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
       <div id="toc">
       </div>
       <% if current_page.data.toc_footers %>

@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: MusicGraph API Reference
 
 toc_footers:
  - <a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key</a>
