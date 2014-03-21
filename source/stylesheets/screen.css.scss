@@ -39,21 +39,21 @@ html, body {
 // HORIZONTAL MENUBAR
 ////////////////////////////////////////////////////////////////////////////////
 
-.menu{
+.menubar{
   width: 100%;
-  background-color: $menu-bg;
+  background-color: $menubar-bg;
   top: 0px;
   left: 0px;
   z-index: 100;
   position: fixed;
-  height: $menu-height;
+  height: $menubar-height;
 }
 
-.menu .menu-body{
+.menubar .menubar-body{
   margin-left: $nav-width;
 }
 
-.menu ul{
+.menubar ul{
   margin: 0;
   padding: 0;
   &.left{
@@ -64,15 +64,15 @@ html, body {
   }
 }
 
-.menu img{
+.menubar img{
   float: left;
 }
 
-.menu ul li{
+.menubar ul li{
   display: inline;
 }
 
-.menu ul li a{
+.menubar ul li a{
   float: left;
   text-decoration: none;
   color: white;
@@ -89,7 +89,7 @@ html, body {
   }
 }
 
-.menu ul li .current{
+.menubar ul li .current{
   color: #fff;
   background-color:#0b75b2;
 }
@@ -102,7 +102,7 @@ html, body {
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
-  top: $menu-height;
+  top: $menubar-height;
   left: 0;
   bottom: 0;
   width: $nav-width;
@@ -206,7 +206,7 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 
 .page-wrapper {
-  margin-top: $menu-height;
+  margin-top: $menubar-height;
   margin-left: $nav-width;
   min-width: 700px;
   position: relative;
