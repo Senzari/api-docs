@@ -1,53 +1,34 @@
 # MusicGraph API Documentation
 
-Inspired by the three-column, single-page design made popular by [Stripe's](https://stripe.com/docs/api) API documentation. Everything is written in Github flavored Markdown — even the code samples! As you scroll, the URL path is updated to the nearest anchor tag, so it's easy to link to a particular point in the documentation. Support for syntax highlighting is provided by [Rogue](http://rouge.jayferd.us/demo).
+Inspired by the three-column, single-page design made popular by [Stripe's](https://stripe.com/docs/api) API documentation. Everything is written in Markdown — even the code samples! As you scroll, the URL path is updated to the nearest anchor tag, so it's easy to link to a particular point in the documentation.
 
-### Prerequisites
+```
+Senzari/api-docs
+ └ source
+    └ fonts
+    └ images
+    └ javascripts
+    └ stylesheets
+    └ index.md
+```
 
-You're going to need:
+## Markdown Editing
 
-- **Ruby, version 1.9.3 or newer**
-- **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
+The documentation is written on a single page, using [Github Flavored Markdown](https://help.github.com/articles/github-flavored-markdown): `source/index.md`
 
-### Local Deploy
-
-1. `cd api-docs`
-2. Install all dependencies: `bundle install`
-3. Start the test server: `bundle exec middleman server`
-
-You can now see the docs at <http://localhost:4567>. As you edit `source/index.md`, the server will automatically update!
-
-### Server Deploy
-
-Publishing the MusicGraph API documentation couldn't be more simple. Middleman will build your website to the `build` directory of your project, and you can copy those static HTML files to the server of your choice.
-
-1. `cd api-docs`
-2. Compile to HTML: `rake build`
-3. Copy the static HTML files in `build` to the server
-
-The MusicGraph API documentation is static HTML, Javascript, and CSS, so it's pretty trivial to host. 
-
-## Markdown Syntax
-
-### Headers
-
-For headers:
+For **headers**:
 
     # Level 1 Header
     ## Level 2 Header
     ### Level 3 Header
 
-Note that only level 1 and 2 headers will appear in the table of contents.
+Only level 1 and level 2 headers appear in the table of contents.
 
-### Paragraph Text
+For normal paragraphs, just type your paragraph on a single line:
 
-For normal text, just type your paragraph on a single line.
+    This text is **bold**, this is *italic*, this is an `inline code block`. This is an [internal link](#error-code-definitions), this is an [external link](http://google.com).
 
-    This is some paragraph text. Exciting, no?
-
-Make sure the lines above below your paragraph are empty.
-
-### Code Samples
+Make sure the lines above and below the paragraph are empty.
 
 For code samples:
 
@@ -61,40 +42,15 @@ For code samples:
   ```
 ```
 
-Code samples will appear in the dark area to the left of the main text. We recommend positioning code samples right under headers in your markdown file.
+Position code samples right under headers in the markdown file. Here's a [list of supported languages](http://rouge.jayferd.us/demo).
 
-For the full list of supported languages, see [rouge](http://rouge.jayferd.us/demo).
+Code annotations appearin the area to the right, inline with code samples:
 
-### Code Annotations
-
-For code annotations:
-
-    > This is a code annotation. It will appear in the area to the right, next to the code samples.
+    > This is a code annotation.
 
 Code annotations are essentially the same thing as paragraphs, but they'll appear in the area to the right along with your code samples.
 
-### Tables
-
-Slate uses PHP Markdown Extra style tables:
-
-```markdown
-Table Header 1 | Table Header 2 | Table Header 3
--------------- | -------------- | --------------
-Row 1 col 1 | Row 1 col 2 | Row 1 col 3
-Row 2 col 1 | Row 2 col 2 | Row 2 col 3
-```
-
-Note that the pipes do not need to line up with each other on each line.
-
-If you don't like that syntax, feel free to use normal html `<table>`s directly in your markdown.
-
-### Formatted Text
-
-    This text is **bold**, this is *italic*, this is an `inline code block`.
-
-You can use those formatting rules in code annotations, tables, paragraphs, lists, wherever.
-
-### Lists
+For lists:
 
     1. This
     2. Is
@@ -108,11 +64,18 @@ You can use those formatting rules in code annotations, tables, paragraphs, list
     * Bullet
     * List
 
-### Links
+For tables:
 
-    This is an [internal link](#error-code-definitions), this is an [external link](http://google.com).
+```markdown
+Table Header 1 | Table Header 2 | Table Header 3
+-------------- | -------------- | --------------
+Row 1 col 1 | Row 1 col 2 | Row 1 col 3
+Row 2 col 1 | Row 2 col 2 | Row 2 col 3
+```
 
-### Notes and Warnings
+##
+
+Note that the pipes do not need to line up with each other on each line.
 
 You can add little highlighted warnings and notes with just a little HTML embedded in your markdown document:
 
@@ -121,3 +84,28 @@ You can add little highlighted warnings and notes with just a little HTML embedd
     </aside>
 
 Use `class="notice"` for blue notes, `class="warning"` for red warnings, and `class="success"` for green notes.
+
+## Installation Instructions
+
+You're going to need:
+
+- **Ruby, version 1.9.3 or newer** - Type `ruby -v` to see what version you have.
+- **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
+
+### Local Deploy
+
+1. Go to the directory: `cd api-docs`
+2. Install all dependencies: `bundle install`
+3. Start the dev server: `bundle exec middleman server`
+
+You can now see the docs at <http://localhost:4567>. As you edit `source/index.md`, the server will automatically update!
+
+### Remote Deploy
+
+Publishing the MusicGraph API documentation couldn't be more simple. Middleman will build your website to the `build` directory of your project, and you can copy those static HTML files to the server of your choice.
+
+1. `cd api-docs`
+2. Compile to HTML: `rake build`
+3. Copy the static HTML files in `build` to the server
+
+The MusicGraph API documentation is static HTML, Javascript, and CSS, so it's pretty trivial to host. See for yourself, try deploying this `README.md` file!
