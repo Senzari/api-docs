@@ -14,7 +14,9 @@ Senzari/api-docs
 
 ## Markdown Editing
 
-The documentation is written on a single page, using [Github Flavored Markdown](https://help.github.com/articles/github-flavored-markdown): `source/index.md`
+The documentation is written on a single page, using [Github Flavored Markdown](https://help.github.com/articles/github-flavored-markdown):
+
+`source/index.md`
 
 For **headers**:
 
@@ -24,33 +26,33 @@ For **headers**:
 
 Only level 1 and level 2 headers appear in the table of contents.
 
-For normal paragraphs, just type your paragraph on a single line:
+For **normal text**, just type your paragraph on a single line:
 
     This text is **bold**, this is *italic*, this is an `inline code block`. This is an [internal link](#error-code-definitions), this is an [external link](http://google.com).
 
 Make sure the lines above and below the paragraph are empty.
 
-For code samples:
+For **code samples**:
 
 ```
-  ```ruby
-  # This is some Ruby code!
-  ```
+    ```ruby
+    # This is some Ruby code!
+    ```
 
-  ```python
-  // This is some Python code!
-  ```
+    ```python
+    // This is some Python code!
+    ```
 ```
 
 Position code samples right under headers in the markdown file. Here's a [list of supported languages](http://rouge.jayferd.us/demo).
 
-Code annotations appearin the area to the right, inline with code samples:
+For **code annotations**:
 
     > This is a code annotation.
 
 Code annotations are essentially the same thing as paragraphs, but they'll appear in the area to the right along with your code samples.
 
-For lists:
+For **lists**:
 
     1. This
     2. Is
@@ -64,7 +66,7 @@ For lists:
     * Bullet
     * List
 
-For tables:
+For **tables**:
 
 ```markdown
 Table Header 1 | Table Header 2 | Table Header 3
@@ -73,11 +75,9 @@ Row 1 col 1 | Row 1 col 2 | Row 1 col 3
 Row 2 col 1 | Row 2 col 2 | Row 2 col 3
 ```
 
-##
-
 Note that the pipes do not need to line up with each other on each line.
 
-You can add little highlighted warnings and notes with just a little HTML embedded in your markdown document:
+For **highlighted notes**:
 
     <aside class="notice">
     You must replace `meowmeowmeow` with your personal API key.
