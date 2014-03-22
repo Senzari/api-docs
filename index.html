@@ -1,0 +1,944 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>MusicGraph API Reference</title>
+
+    <link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="javascripts/all.js" type="text/javascript"></script>
+
+    <script>
+      $(function() {
+        var toc = $("#toc").tocify({
+          selectors: "h1,h2",
+          extendPage: false,
+          theme: "none",
+          smoothScroll: false,
+          showEffectSpeed: 0,
+          hideEffectSpeed: 180,
+          ignoreSelector: ".toc-ignore",
+          hashGenerator: 'pretty',
+          highlightOffset: 60,
+          scrollTo: -2,
+          scrollHistory: true,
+          hashGenerator: function(text, element) {
+            return element[0].getAttribute('id');
+          }
+        }).data("toc-tocify");
+        // Hack to make already open sections to start opened,
+        // instead of displaying an ugly animation
+        setTimeout(function() {
+          toc.setOption("showEffectSpeed", 180);
+        },50);
+        setupLanguages([
+          
+        ]);
+      });
+    </script>
+  </head>
+
+  <body class="index">
+
+    <div class="menubar">
+      <a href="https://developer.musicgraph.com/"><img src="images/logo.png" /></a>
+      <div class="menubar-body">
+        <ul class="left">
+          <li><a href="https://developer.musicgraph.com/">Home</a></li>
+          <li><a href="#overview">Documentation</a></li>
+          <li><a href="https://developer.musicgraph.com/#plans">Plans</a></li>
+          <li><a href="https://developer.musicgraph.com/contact/">Contact Us</a></li>
+          <li><a href="http://demos.musicgraph.com/">Demos</a></li>
+        </ul>
+        <ul class="right">
+          <li><a href="https://developer.musicgraph.com/login">Login</a></li>
+          <li><a href="https://developer.musicgraph.com/#plans">Signup</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tocify-wrapper">
+      <div id="toc">
+      </div>
+      
+      <ul class="toc-footer">
+        
+          <li><a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key</a></li>
+        
+      </ul>
+      
+    </div>
+
+    <div class="page-wrapper">
+      <div class="content">
+        <h1 id="overview">Overview</h1>
+
+<p>Welcome to the MusicGraph API documentation! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph structure that you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.</p>
+
+<p>All requests made to the MusicGraph API must be authenticated with an API key. The API key used in this document is for demonstration purposes only. It should not be used for any other application as it is rate limited. You can <a title="Sign Up for a Developer Key" href="https://developer.musicgraph.com/#plans">sign up for a free account here</a>.</p>
+
+<h2 id="sending-requests">Sending Requests</h2>
+
+<blockquote>
+<p><em>Find the track id for Jimi Hendrix&rsquo;s &ldquo;Voodoo Child&rdquo;&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?&amp;artist_name=jimi+hendrix&amp;name=voodoo+childlimit=1&amp;fields=id&amp;api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"9f2c42a8-bc4a-9e77-98fc-d3917d69d544"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>The MusicGraph API is strongly typed. In addition to having a type, objects stored in the graph also have a unique ID. Most objects support a metadata lookup. You can retrieve an object&rsquo;s metadata using its ID.</p>
+
+<p><aside class="notice">
+In the example to the right we are limiting the JSON response to include only the id field for the artist object. Try sending the request without the <code class="prettyprint">fields</code> paramter, see what happens!
+</aside></p>
+
+<h3 id="required-parmeter">Required Parmeter</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>api_key</strong></td>
+<td>Your API key</td>
+</tr>
+</tbody></table>
+
+<h3 id="optional-parameters">Optional Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>fields</strong></td>
+<td>Limit the set of returned properties; comma-separated</td>
+</tr>
+<tr>
+<td><strong>limit</strong></td>
+<td>Limit the number of results (max = 100; default = 15)</td>
+</tr>
+<tr>
+<td><strong>offset</strong></td>
+<td>Paginate the results set</td>
+</tr>
+</tbody></table>
+
+<h2 id="error-handling">Error Handling</h2>
+
+<blockquote>
+<p><em>The requested object could not be found&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/tracks?api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">404</span> <span class="ne">Not Found</span>
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Invalid ID"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<blockquote>
+<p><em>Access denied because no API key was included in the request&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/e36675b4-a6b5-11e0-b446-00251188dd67"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">403</span> <span class="ne">Forbidden</span>
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Missing or Invalid API Key"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<blockquote>
+<p><em>The request could not be understood by the server&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?q=madonna&amp;api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Invalid Search Operation"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>The MusicGraph API uses standard HTTP/1.1 response codes as described in <a title="The HTTP/1.1 Standard" href="http://tools.ietf.org/html/rfc2616">RFC 2616</a> to indicate the success or failure of an API request. Codes in the 2xx range indicate success, codes in the 4xx and 5xx ranges indicate an error; for example, an invalid id, missing api key, or type exception.</p>
+
+<h3 id="http-response-codes">HTTP Response Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">200</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code class="prettyprint">400</code></td>
+<td>Bad Request - the request is not valid</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code></td>
+<td>Forbidden - you are not authorized to access that resource</td>
+</tr>
+<tr>
+<td><code class="prettyprint">404</code></td>
+<td>Not Found - The requested resource could not be found</td>
+</tr>
+<tr>
+<td><code class="prettyprint">429</code></td>
+<td>Too Many Requests - You have exceeded the rate limit associated with your API key</td>
+</tr>
+<tr>
+<td><code class="prettyprint">500</code></td>
+<td>Internal Server Error - Please <a href="mailto:">email us</a> to report a service outage</td>
+</tr>
+</tbody></table>
+
+<h3 id="json-status-codes">JSON Status Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">-1</code></td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td><code class="prettyprint">0</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code class="prettyprint">1</code></td>
+<td>Missing/ Invalid API Key</td>
+</tr>
+<tr>
+<td><code class="prettyprint">2</code></td>
+<td>This API key is not allowed to call this method</td>
+</tr>
+<tr>
+<td><code class="prettyprint">3</code></td>
+<td>Rate Limit Exceeded</td>
+</tr>
+<tr>
+<td><code class="prettyprint">4</code></td>
+<td>Not Supported</td>
+</tr>
+<tr>
+<td><code class="prettyprint">5</code></td>
+<td>Invalid Search Operation</td>
+</tr>
+<tr>
+<td><code class="prettyprint">6</code></td>
+<td>Invalid Connection Name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">7</code></td>
+<td>Invalid MusicGraph ID</td>
+</tr>
+<tr>
+<td><code class="prettyprint">8</code></td>
+<td>Invalid Type</td>
+</tr>
+</tbody></table>
+
+<h1 id="search-api">Search API</h1>
+
+<h2 id="artists">Artists</h2>
+
+<blockquote>
+<p><em>Find artists from the 1960s that sound similar to Jimi Hendrix&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?&amp;decade=1960s&amp;similar_to=Jimi+Hendrix&amp;limit=3&amp;fields=id,name&amp;api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"629fcb4d-ae9e-dfde-593c-f75d7659ee9d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Frank Zappa"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"e4b5e4d8-a6b5-11e0-b446-00251188dd67"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Grateful Dead"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"ee29f4f9-a6b5-11e0-b446-00251188dd67"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Leslie West"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<blockquote>
+<p><em>Search for female artists that are similar to Madonna&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?similar_to=Madonna&amp;gender=female&amp;limit=3&amp;fields=id,name&amp;api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"7d8fc1bf-e7c5-4471-7b3a-bef5a9d25249"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Vanity"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"d64bcb0d-7c57-3099-07b7-bd47692ff2ab"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Cyndi Lauper"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"e36675b4-a6b5-11e0-b446-00251188dd67"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Gwen Guthrie"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<h3 id="artist-metadata-endpoints">Artist Metadata Endpoints</h3>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/&lt;id&gt;</code></td>
+<td>Retrieve metadata for an artist with an artist id</td>
+</tr>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/&lt;id&gt;/albums</code></td>
+<td>List albums by this with the <code class="prettyprint">/albums</code> connection</td>
+</tr>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/&lt;id&gt;/tracks</code></td>
+<td>List tracks by this artist with the <code class="prettyprint">/tracks</code> connection</td>
+</tr>
+</tbody></table>
+
+<h3 id="artist-search-endpoint">Artist Search Endpoint</h3>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/artist/search</code></td>
+<td>Execute any number of search operations (described below)</td>
+</tr>
+</tbody></table>
+
+<h3 id="artist-search-operations">Artist Search Operations</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong></td>
+<td>Return artists who match the name</td>
+</tr>
+<tr>
+<td><strong>similar_to</strong></td>
+<td>Return artists that are similar to the given name</td>
+</tr>
+<tr>
+<td><strong>produced_by</strong></td>
+<td>Return artists who worked with a given producer</td>
+</tr>
+<tr>
+<td><strong>influenced</strong></td>
+<td>Return artists who influenced a given artist</td>
+</tr>
+<tr>
+<td><strong>influenced_by</strong></td>
+<td>Return artists who were influenced by a given artist</td>
+</tr>
+</tbody></table>
+
+<h3 id="artist-search-filters">Artist Search Filters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>decade</strong></td>
+<td>Return artists who were active during a given decade; <a href="#">possible values</a></td>
+</tr>
+<tr>
+<td><strong>gender</strong></td>
+<td>Return artists filtered by gender; <a href="#">possible values</a></td>
+</tr>
+<tr>
+<td><strong>genre</strong></td>
+<td>Return artists filtered by genre; <a href="#">possible values</a></td>
+</tr>
+<tr>
+<td><strong>influenced</strong></td>
+<td>Return artists who influenced a given artist</td>
+</tr>
+<tr>
+<td><strong>influenced_by</strong></td>
+<td>Return artists who were influenced by a given artist</td>
+</tr>
+</tbody></table>
+
+<h2 id="albums">Albums</h2>
+
+<blockquote>
+<p><em>Find tracks featured on Michael Jackson&rsquo;s &ldquo;Thriller&rdquo; album&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&amp;api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"api"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">445</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d9529a1d-9d9c-f676-00e6-4b37084705a3"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thriller"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86fa1949-3e14-fa88-a8fa-a73208d27fb9"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Human Nature"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31b68615-e4a2-5c85-e19f-733150669101"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wanna Be Startin' Somethin'"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ab02613-038b-d5a9-ec40-0971568d182f"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lady in My Life"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cd1f6dfc-eec5-baec-910e-f24a3c3d974e"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vincent Price Excerpt"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ffe72498-96af-6806-0c5f-971fa6722cb8"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P.Y.T. (Pretty Young Thing)"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2e7bda58-3a9e-fc02-2b03-df1a9606945b"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lady in My Life"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2721e4d7-0828-cb78-524c-4961207b36b4"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Billie Jean"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8dcf6ab6-29c3-5768-8a4f-1406aaf38a68"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beat It 2008"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59d3efea-ca5a-bb33-12f0-37f8edb6e906"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Lady in My Life"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2b4ff8c8-d4fc-dd22-846e-37846ab70c2c"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baby Be Mine"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"205d6f97-43b5-9464-e1ef-c08cac326bb6"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beat It"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de324972-dfe3-577b-ef15-eea28219d6a8"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"For All Time"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f491d58a-0872-a9d9-2a3d-0306191d829a"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P.Y.T. (Pretty Young Thing)"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<h3 id="album-metadata-endpoints">Album Metadata Endpoints</h3>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/&lt;id&gt;</code></td>
+<td>Return metadata for an album by id</td>
+</tr>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/&lt;id&gt;/tracks</code></td>
+<td>List this album&rsquo;s tracks with the <code class="prettyprint">/tracks</code> connection</td>
+</tr>
+</tbody></table>
+
+<h3 id="album-search-endpoint">Album Search Endpoint</h3>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/album/search</code></td>
+<td>Execute any number of search operations (described below)</td>
+</tr>
+</tbody></table>
+
+<h3 id="album-search-operations">Album Search Operations</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong></td>
+<td>Find albums by name</td>
+</tr>
+<tr>
+<td><strong>artist_name</strong></td>
+<td>Find albums by an artist</td>
+</tr>
+<tr>
+<td><strong>produced_by</strong></td>
+<td>Find albums that were produced by a producer</td>
+</tr>
+<tr>
+<td><strong>similar_to</strong></td>
+<td>Find albums that are similar to another album</td>
+</tr>
+</tbody></table>
+
+<h3 id="album-search-filters">Album Search Filters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>country</strong></td>
+<td>Filter album search results by country</td>
+</tr>
+<tr>
+<td><strong>decade</strong></td>
+<td>Filter album search results by release date; <a href="#">possible values</a></td>
+</tr>
+<tr>
+<td><strong>genre</strong></td>
+<td>Filter album search results by genre; <a href="#">possible values</a></td>
+</tr>
+<tr>
+<td><strong>genre</strong></td>
+<td>Filter album search results by artist gender; <a href="#">possible values</a></td>
+</tr>
+<tr>
+<td><strong>top_rated</strong></td>
+<td>Return only top-rated albums; possible values are <strong>true</strong> and <strong>false</strong></td>
+</tr>
+</tbody></table>
+
+<h2 id="tracks">Tracks</h2>
+
+<blockquote>
+<p><em>Find tracks by Eminem that feature Rihanna as a guest vocalist&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&amp;featuring_artist=rihanna&amp;limit=1&amp;fields=id,title,artist_name,album_title&amp;api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"f4fe3ba0-c599-157f-3cc1-b45c038620eb"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Love the Way You Lie"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"artist_name"</span><span class="p">:</span><span class="s2">"Eminem"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"album_title"</span><span class="p">:</span><span class="s2">"Recovery"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<blockquote>
+<p><em>Find tracks written by Eminem about his daughter, Hailie&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&amp;lyrics_phrase=hailie&amp;limit=5&amp;fields=title&amp;api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Superman"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"You're Never Over"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Hailie's Song"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Mockingbird"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Cleanin' Out My Closet"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<h3 id="track-metadata-endpoint">Track Metadata Endpoint</h3>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/&lt;id&gt;</code></td>
+<td>Return metadata for a track by id</td>
+</tr>
+</tbody></table>
+
+<h3 id="track-search-endpoint">Track Search Endpoint</h3>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/track/search</code></td>
+<td>Execute any number of search operations (described below)</td>
+</tr>
+</tbody></table>
+
+<h3 id="track-search-operations">Track Search Operations</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong></td>
+<td>Find tracks by name</td>
+</tr>
+<tr>
+<td><strong>artist_name</strong></td>
+<td>Find tracks by an artist</td>
+</tr>
+<tr>
+<td><strong>composed_by</strong></td>
+<td>Find tracks that were composed by an artist</td>
+</tr>
+<tr>
+<td><strong>featuring_artist</strong></td>
+<td>Find tracks that feature an artist</td>
+</tr>
+</tbody></table>
+
+<h3 id="track-search-filters">Track Search Filters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>decade</strong></td>
+<td>Filter track search results by release date; <a href="#">possible values</a></td>
+</tr>
+<tr>
+<td><strong>genre</strong></td>
+<td>Filter track search results by genre; <a href="#">possible values</a></td>
+</tr>
+<tr>
+<td><strong>lyrics_keywords</strong></td>
+<td>Filter track search results by lyric keywords</td>
+</tr>
+<tr>
+<td><strong>lyrics_lang</strong></td>
+<td>Filter track search results by language</td>
+</tr>
+<tr>
+<td><strong>lyrics_phrase</strong></td>
+<td>Filter track search results that contain an exact match</td>
+</tr>
+</tbody></table>
+
+<h1 id="example-endpoints">Example Endpoints</h1>
+
+<table><thead>
+<tr>
+<th>Description</th>
+<th>Endpoint</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>artist-metadata</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-albums</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-tracks</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-metrics</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-metrics-lastfm</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-metrics-twitter</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-metrics-vevo</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-metrics-lastfm</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>album-meta</strong></td>
+<td><code class="prettyprint">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>album-tracks</strong></td>
+<td><code class="prettyprint">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>track-meta</strong></td>
+<td><code class="prettyprint">/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-search-by-name</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-similar-to</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-produced-by</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;produced_by=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-influenced</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-influenced-by</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced_by=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-availops-influenced-by</strong></td>
+<td><code class="prettyprint">/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced_by=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-filter-by-decade</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;decade=1990s</code></td>
+</tr>
+<tr>
+<td><strong>artist-filter-by-genre</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;genre=Rap</code></td>
+</tr>
+<tr>
+<td><strong>artist-filter-by-gender</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;gender=male</code></td>
+</tr>
+<tr>
+<td><strong>artist-availops-filter-by-gender</strong></td>
+<td><code class="prettyprint">/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;gender=male</code></td>
+</tr>
+<tr>
+<td><strong>artist-search-by-name-similar</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=madonna&amp;similar_to=bob dylan</code></td>
+</tr>
+<tr>
+<td><strong>artist-produced-influenced-by</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=u2&amp;influenced=Coldplay</code></td>
+</tr>
+<tr>
+<td><strong>artist-suggest</strong></td>
+<td><code class="prettyprint">/api/v2/artist/suggest?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;prefix=madon</code></td>
+</tr>
+<tr>
+<td><strong>album-by-title</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=Houses+Of+The+Holy</code></td>
+</tr>
+<tr>
+<td><strong>album-by-artist</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=John+Lennon</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-to</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;produced_by=Rick+Rubin</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-to</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller</code></td>
+</tr>
+<tr>
+<td><strong>album-availops-similar-to</strong></td>
+<td><code class="prettyprint">/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-country</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;country=UK</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-decade</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;decade=1990s</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-genre</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;genre=Rap</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-top-rated</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller&amp;top_rated=true</code></td>
+</tr>
+<tr>
+<td><strong>album-availops-similar-top-rated</strong></td>
+<td><code class="prettyprint">/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller&amp;top_rated=true</code></td>
+</tr>
+<tr>
+<td><strong>track-by-title</strong></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=Royals</code></td>
+</tr>
+<tr>
+<td><strong>track-artist_name</strong></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=Pink</code></td>
+</tr>
+<tr>
+<td><strong>track-composed_by</strong></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;composed_by=Sting</code></td>
+</tr>
+<tr>
+<td><strong>track-featuring_artist</strong></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;featuring_artist=Rihanna</code></td>
+</tr>
+<tr>
+<td><strong>track-availops-featuring_artist</strong></td>
+<td><code class="prettyprint">/api/v2/track/**availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;featuring_artist=Rihanna</code></td>
+</tr>
+<tr>
+<td><strong>track-artist-decade</strong></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=Lorde&amp;decade=2010s</code></td>
+</tr>
+<tr>
+<td><strong>track-inspired-genre</strong></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=Shakira&amp;genre=New Age</code></td>
+</tr>
+<tr>
+<td><strong>playlist-artist-id</strong></td>
+<td><code class="prettyprint">/api/v2/playlist?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67</code></td>
+</tr>
+</tbody></table>
+
+<h1 id="terms-and-conditions">Terms And Conditions</h1>
+
+<p>We need to protect users, content providers, our software and service while at the same time enabling you to create applications. We therefore require you to comply with the following terms.</p>
+
+<ol>
+<li><p>Do not use the MusicGraph API or its feeds in connection with anything that promotes or takes part in any products, services, or materials that Senzari might consider malicious, hateful, or illegal.</p></li>
+<li><p>You may not sell, lease, share, transfer, or sublicense access to the MusicGraph API or its feeds to any party other than the API key holder.</p></li>
+</ol>
+
+<p>Please read our <a title="Terms Of Service" href="https://developer.musicgraph.com/policies">Terms Of Service</a> before you start developing anything using the MusicGraph API.</p>
+
+      </div>
+      <div class="dark-box">
+        <div id="lang-selector">
+          
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
