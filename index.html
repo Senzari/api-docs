@@ -273,7 +273,7 @@ In the example to the right we are limiting the JSON response to include only th
 </tr>
 </tbody></table>
 
-<h1 id="search-api">Search API</h1>
+<h1 id="graph-search-api">Graph Search API</h1>
 
 <h2 id="artists">Artists</h2>
 
@@ -430,6 +430,80 @@ In the example to the right we are limiting the JSON response to include only th
 <tr>
 <td><strong>influenced_by</strong></td>
 <td>Return artists who were influenced by a given artist</td>
+</tr>
+</tbody></table>
+
+<h3 id="example-artist-endpoint">Example Artist Endpoint</h3>
+
+<table><thead>
+<tr>
+<th>Description</th>
+<th>Endpoint</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>artist-metadata</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-albums</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-tracks</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-search-by-name</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-similar-to</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-produced-by</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;produced_by=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-influenced</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-influenced-by</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced_by=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-availops-influenced-by</strong></td>
+<td><code class="prettyprint">/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced_by=madonna</code></td>
+</tr>
+<tr>
+<td><strong>artist-filter-by-decade</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;decade=1990s</code></td>
+</tr>
+<tr>
+<td><strong>artist-filter-by-genre</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;genre=Rap</code></td>
+</tr>
+<tr>
+<td><strong>artist-filter-by-gender</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;gender=male</code></td>
+</tr>
+<tr>
+<td><strong>artist-availops-filter-by-gender</strong></td>
+<td><code class="prettyprint">/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;gender=male</code></td>
+</tr>
+<tr>
+<td><strong>artist-search-by-name-similar</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=madonna&amp;similar_to=bob dylan</code></td>
+</tr>
+<tr>
+<td><strong>artist-produced-influenced-by</strong></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=u2&amp;influenced=Coldplay</code></td>
+</tr>
+<tr>
+<td><strong>artist-suggest</strong></td>
+<td><code class="prettyprint">/api/v2/artist/suggest?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;prefix=madon</code></td>
 </tr>
 </tbody></table>
 
@@ -602,6 +676,64 @@ In the example to the right we are limiting the JSON response to include only th
 </tr>
 </tbody></table>
 
+<h3 id="example-album-endpoints">Example Album Endpoints</h3>
+
+<table><thead>
+<tr>
+<th>Description</th>
+<th>Endpoint</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>album-meta</strong></td>
+<td><code class="prettyprint">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>album-tracks</strong></td>
+<td><code class="prettyprint">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>album-by-title</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=Houses+Of+The+Holy</code></td>
+</tr>
+<tr>
+<td><strong>album-by-artist</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=John+Lennon</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-to</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;produced_by=Rick+Rubin</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-to</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller</code></td>
+</tr>
+<tr>
+<td><strong>album-availops-similar-to</strong></td>
+<td><code class="prettyprint">/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-country</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;country=UK</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-decade</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;decade=1990s</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-genre</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;genre=Rap</code></td>
+</tr>
+<tr>
+<td><strong>album-similar-top-rated</strong></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller&amp;top_rated=true</code></td>
+</tr>
+<tr>
+<td><strong>album-availops-similar-top-rated</strong></td>
+<td><code class="prettyprint">/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller&amp;top_rated=true</code></td>
+</tr>
+</tbody></table>
+
 <h2 id="tracks">Tracks</h2>
 
 <blockquote>
@@ -743,7 +875,7 @@ In the example to the right we are limiting the JSON response to include only th
 </tr>
 </tbody></table>
 
-<h1 id="example-endpoints">Example Endpoints</h1>
+<h3 id="example-endpoints">Example Endpoints</h3>
 
 <table><thead>
 <tr>
@@ -752,140 +884,8 @@ In the example to the right we are limiting the JSON response to include only th
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>artist-metadata</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
-<td><strong>artist-albums</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
-<td><strong>artist-tracks</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
-<td><strong>artist-metrics</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
-<td><strong>artist-metrics-lastfm</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
-<td><strong>artist-metrics-twitter</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
-<td><strong>artist-metrics-vevo</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
-<td><strong>artist-metrics-lastfm</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
-<td><strong>album-meta</strong></td>
-<td><code class="prettyprint">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
-<td><strong>album-tracks</strong></td>
-<td><code class="prettyprint">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
 <td><strong>track-meta</strong></td>
 <td><code class="prettyprint">/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
-</tr>
-<tr>
-<td><strong>artist-search-by-name</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=madonna</code></td>
-</tr>
-<tr>
-<td><strong>artist-similar-to</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna</code></td>
-</tr>
-<tr>
-<td><strong>artist-produced-by</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;produced_by=madonna</code></td>
-</tr>
-<tr>
-<td><strong>artist-influenced</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced=madonna</code></td>
-</tr>
-<tr>
-<td><strong>artist-influenced-by</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced_by=madonna</code></td>
-</tr>
-<tr>
-<td><strong>artist-availops-influenced-by</strong></td>
-<td><code class="prettyprint">/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced_by=madonna</code></td>
-</tr>
-<tr>
-<td><strong>artist-filter-by-decade</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;decade=1990s</code></td>
-</tr>
-<tr>
-<td><strong>artist-filter-by-genre</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;genre=Rap</code></td>
-</tr>
-<tr>
-<td><strong>artist-filter-by-gender</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;gender=male</code></td>
-</tr>
-<tr>
-<td><strong>artist-availops-filter-by-gender</strong></td>
-<td><code class="prettyprint">/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;gender=male</code></td>
-</tr>
-<tr>
-<td><strong>artist-search-by-name-similar</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=madonna&amp;similar_to=bob dylan</code></td>
-</tr>
-<tr>
-<td><strong>artist-produced-influenced-by</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=u2&amp;influenced=Coldplay</code></td>
-</tr>
-<tr>
-<td><strong>artist-suggest</strong></td>
-<td><code class="prettyprint">/api/v2/artist/suggest?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;prefix=madon</code></td>
-</tr>
-<tr>
-<td><strong>album-by-title</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=Houses+Of+The+Holy</code></td>
-</tr>
-<tr>
-<td><strong>album-by-artist</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=John+Lennon</code></td>
-</tr>
-<tr>
-<td><strong>album-similar-to</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;produced_by=Rick+Rubin</code></td>
-</tr>
-<tr>
-<td><strong>album-similar-to</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller</code></td>
-</tr>
-<tr>
-<td><strong>album-availops-similar-to</strong></td>
-<td><code class="prettyprint">/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller</code></td>
-</tr>
-<tr>
-<td><strong>album-similar-country</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;country=UK</code></td>
-</tr>
-<tr>
-<td><strong>album-similar-decade</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;decade=1990s</code></td>
-</tr>
-<tr>
-<td><strong>album-similar-genre</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;genre=Rap</code></td>
-</tr>
-<tr>
-<td><strong>album-similar-top-rated</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller&amp;top_rated=true</code></td>
-</tr>
-<tr>
-<td><strong>album-availops-similar-top-rated</strong></td>
-<td><code class="prettyprint">/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller&amp;top_rated=true</code></td>
 </tr>
 <tr>
 <td><strong>track-by-title</strong></td>
@@ -915,11 +915,57 @@ In the example to the right we are limiting the JSON response to include only th
 <td><strong>track-inspired-genre</strong></td>
 <td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=Shakira&amp;genre=New Age</code></td>
 </tr>
+</tbody></table>
+
+<h1 id="playlist-api">Playlist API</h1>
+
+<h3 id="example-endpoints">Example Endpoints</h3>
+
+<table><thead>
+<tr>
+<th>Description</th>
+<th>Endpoint</th>
+</tr>
+</thead><tbody>
 <tr>
 <td><strong>playlist-artist-id</strong></td>
 <td><code class="prettyprint">/api/v2/playlist?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67</code></td>
 </tr>
 </tbody></table>
+
+<h1 id="music-data-api">Music Data API</h1>
+
+<h3 id="example-endpoints">Example Endpoints</h3>
+
+<table><thead>
+<tr>
+<th>Description</th>
+<th>Endpoint</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>artist-metrics</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-metrics-lastfm</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-metrics-twitter</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-metrics-vevo</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+<tr>
+<td><strong>artist-metrics-lastfm</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+</tr>
+</tbody></table>
+
+<h1 id="dictionary">Dictionary</h1>
 
 <h1 id="terms-and-conditions">Terms And Conditions</h1>
 
