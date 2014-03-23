@@ -148,7 +148,7 @@ Code | Message
 `7` | Invalid MusicGraph ID
 `8` | Invalid Type
 
-# Search API
+# Graph Search API
 
 ## Artists
 
@@ -253,6 +253,27 @@ Parameter | Description
 **genre** | Return artists filtered by genre; [possible values]()
 **influenced** | Return artists who influenced a given artist
 **influenced_by** | Return artists who were influenced by a given artist
+
+### Example Artist Endpoint
+
+Description | Endpoint
+------------|---------
+**artist-metadata** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763`
+**artist-albums** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=39ab48c2c0ff9adc16feebf710e43763`
+**artist-tracks** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763`
+**artist-search-by-name** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=madonna`
+**artist-similar-to** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna`
+**artist-produced-by** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&produced_by=madonna`
+**artist-influenced** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&influenced=madonna`
+**artist-influenced-by** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&influenced_by=madonna`
+**artist-availops-influenced-by** | `/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&influenced_by=madonna`
+**artist-filter-by-decade** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&decade=1990s`
+**artist-filter-by-genre** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&genre=Rap`
+**artist-filter-by-gender** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&gender=male`
+**artist-availops-filter-by-gender** | `/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&gender=male`
+**artist-search-by-name-similar** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=madonna&similar_to=bob dylan`
+**artist-produced-influenced-by** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=u2&influenced=Coldplay`
+**artist-suggest** | `/api/v2/artist/suggest?api_key=39ab48c2c0ff9adc16feebf710e43763&prefix=madon`
 
 ## Albums
 
@@ -369,6 +390,23 @@ Parameter | Description
 **genre** | Filter album search results by artist gender; [possible values]()
 **top_rated** | Return only top-rated albums; possible values are **true** and **false**
 
+### Example Album Endpoints
+
+Description | Endpoint
+------------|---------
+**album-meta** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=39ab48c2c0ff9adc16feebf710e43763`
+**album-tracks** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763`
+**album-by-title** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=Houses+Of+The+Holy`
+**album-by-artist** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_name=John+Lennon`
+**album-similar-to** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&produced_by=Rick+Rubin`
+**album-similar-to** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller`
+**album-availops-similar-to** | `/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller`
+**album-similar-country** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=21&country=UK`
+**album-similar-decade** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=21&decade=1990s`
+**album-similar-genre** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=21&genre=Rap`
+**album-similar-top-rated** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller&top_rated=true`
+**album-availops-similar-top-rated** | `/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller&top_rated=true`
+
 ## Tracks
 
 > *Find tracks by Eminem that feature Rihanna as a guest vocalist...*
@@ -467,44 +505,11 @@ Parameter | Description
 **lyrics_lang** | Filter track search results by language
 **lyrics_phrase** | Filter track search results that contain an exact match
 
-# Example Endpoints
+### Example Endpoints
 
 Description | Endpoint
 ------------|---------
-**artist-metadata** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-albums** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-tracks** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-metrics** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-metrics-twitter** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-metrics-vevo** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**album-meta** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**album-tracks** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763`
 **track-meta** | `/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-search-by-name** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=madonna`
-**artist-similar-to** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna`
-**artist-produced-by** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&produced_by=madonna`
-**artist-influenced** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&influenced=madonna`
-**artist-influenced-by** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&influenced_by=madonna`
-**artist-availops-influenced-by** | `/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&influenced_by=madonna`
-**artist-filter-by-decade** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&decade=1990s`
-**artist-filter-by-genre** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&genre=Rap`
-**artist-filter-by-gender** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&gender=male`
-**artist-availops-filter-by-gender** | `/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&gender=male`
-**artist-search-by-name-similar** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=madonna&similar_to=bob dylan`
-**artist-produced-influenced-by** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=u2&influenced=Coldplay`
-**artist-suggest** | `/api/v2/artist/suggest?api_key=39ab48c2c0ff9adc16feebf710e43763&prefix=madon`
-**album-by-title** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=Houses+Of+The+Holy`
-**album-by-artist** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_name=John+Lennon`
-**album-similar-to** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&produced_by=Rick+Rubin`
-**album-similar-to** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller`
-**album-availops-similar-to** | `/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller`
-**album-similar-country** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=21&country=UK`
-**album-similar-decade** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=21&decade=1990s`
-**album-similar-genre** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=21&genre=Rap`
-**album-similar-top-rated** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller&top_rated=true`
-**album-availops-similar-top-rated** | `/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller&top_rated=true`
 **track-by-title** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=Royals`
 **track-artist_name** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_name=Pink`
 **track-composed_by** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&composed_by=Sting`
@@ -512,7 +517,28 @@ Description | Endpoint
 **track-availops-featuring_artist** | `/api/v2/track/**availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&featuring_artist=Rihanna`
 **track-artist-decade** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_name=Lorde&decade=2010s`
 **track-inspired-genre** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_name=Shakira&genre=New Age`
+
+# Playlist API
+
+### Example Endpoints
+
+Description | Endpoint
+------------|---------
 **playlist-artist-id** | `/api/v2/playlist?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67`
+
+# Music Data API
+
+### Example Endpoints
+
+Description | Endpoint
+------------|---------
+**artist-metrics** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=39ab48c2c0ff9adc16feebf710e43763`
+**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=39ab48c2c0ff9adc16feebf710e43763`
+**artist-metrics-twitter** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=39ab48c2c0ff9adc16feebf710e43763`
+**artist-metrics-vevo** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=39ab48c2c0ff9adc16feebf710e43763`
+**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=39ab48c2c0ff9adc16feebf710e43763`
+
+# Dictionary
 
 # Terms And Conditions
 
