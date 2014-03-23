@@ -47,6 +47,7 @@ html, body {
   z-index: 100;
   position: fixed;
   height: $menubar-height;
+  padding-top: $menubar-padding-top;
 }
 
 .menubar .menubar-body{
@@ -79,19 +80,20 @@ html, body {
   padding: 17px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
+  font-weight: bold;
   text-transform: uppercase;
   &:visited{
     color: white;
   }
   &:hover{
     color: #fff;
-    background-color:#0b75b2;
+    background-color:#005371;
   }
 }
 
 .menubar ul li .current{
   color: #fff;
-  background-color:#0b75b2;
+  background-color:#005371;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -102,7 +104,7 @@ html, body {
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
-  top: $menubar-height;
+  top: $nav-top;
   left: 0;
   bottom: 0;
   width: $nav-width;
@@ -206,7 +208,7 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 
 .page-wrapper {
-  margin-top: $menubar-height;
+  margin-top: $content-top;
   margin-left: $nav-width;
   min-width: 700px;
   position: relative;
