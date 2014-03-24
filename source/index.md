@@ -150,6 +150,14 @@ Code | Message
 
 # Graph Search API
 
+The Graph Search API allows you to dramatically expand your music service’s search capabilities, allowing your users to perform more powerful and more precise queries.
+
+With Graph Search, a user can easily traverse our ever-expanding graph ontology that includes hundreds of millions of entities (vertices) and connections (edges), as well as seven billion properties, making it one of the richest collection of music knowledge in the world.
+
+It is analogous to Facebook’s Graph Search, but instead of responding higher-level questions about a given user’s social graph, like in “Photos of and friends or coworkers and your current city”, Graph Search allows for deep queries within the music realm, as in for example “Artists similar to Rihanna, that are female and that have more than 100k followers in Twitter”.
+
+Try Graph Search today and let your users discover artists, albums and songs in the most powerful way possible.
+
 ## Artists
 
 > *Find artists from the 1960s that sound similar to Jimi Hendrix...*
@@ -520,6 +528,28 @@ Description | Endpoint
 
 # Playlist API
 
+> *Search for a playlist with Pearl Jam as the seed artist...*
+
+```shell
+$ curl "http://api.musicgraph.com/api/v1/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&api_key=APIKEY"
+```
+
+```http
+HTTP/1.1 200 OK
+```
+
+```json
+
+```
+
+The Playlisting API allows you to create powerful DMCA-compliant music recommendations based on hundreds of thousands of potential "seed artists."
+
+One importantly differentiator in the way we generate our recommendations is that we use very powerful “graph algorithms” to select the best songs in a real-time for each user, which can take into account a large number of variables, such as musical similarities, personal taste, social relationships, market metrics, user context, etc.
+
+These “graph recommendation” approach not only results in much more personalized selections, but also in a more transparent experience for the end-user, as each recommendation comes with “evidence” that clearly explains why each song was selected. We can achieve this by “walking the graph” and taking note of each step taken in the decision process. What is even cooler is that depending on the user feedback, we can modify the “walk”, so that for example we can skip the “social nodes” in the event that the user hates his or her friends’ taste in music.
+
+Right now we only have our “Basic Playlist Generator” enabled, but we will add a ton of new features in the coming weeks that will allow you to fully leverage the full power of MusicGraph’s deep music knowledge.
+
 ### Example Endpoints
 
 Description | Endpoint
@@ -527,6 +557,45 @@ Description | Endpoint
 **playlist-artist-id** | `/api/v2/playlist?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67`
 
 # Music Data API
+
+Interested in mining the data yourself or building an app that requires deeper insight into some of the data we’ve generated? The Music Data plan provides detailed data about:
+
+- Artists’ social media trends: Followers, song plays and video views across leading sources such as Twitter, Facebook, LastFM and Vevo.
+- Lyrical features: for licensing reasons, rather than returning the full lyrics in a song, we extract and return the top 15 most “significant” words per song, hopefully giving you a general idea of what the song is about. A language code is also included in the results.
+
+For more details please check out our plans and get your free API key today.
+
+## Artist Metrics
+
+> *Search for metrics using Pearl Jam as the artist...*
+
+```shell
+$ curl "http://api.musicgraph.com/api/v1/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&api_key=APIKEY"
+```
+
+```http
+HTTP/1.1 200 OK
+```
+
+```json
+
+```
+
+> *If you want to only view a specific data sources data, then pass the source name in the URL as shown below...*
+
+```shell
+$ curl "http://api.musicgraph.com/api/v1/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=APIKEY"
+```
+
+```http
+HTTP/1.1 200 OK
+```
+
+```json
+
+```
+
+## Lyrical Features
 
 ### Example Endpoints
 
@@ -539,6 +608,68 @@ Description | Endpoint
 **artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=39ab48c2c0ff9adc16feebf710e43763`
 
 # Dictionary
+
+## Countries
+
+Use standard 2-letter country codes as [described here](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+
+## Decades
+
+- 1890s
+- 1900s
+- 1910s
+- 1920s
+- 1930s
+- 1940s
+- 1950s
+- 1960s
+- 1970s
+- 1980s
+- 1990s
+- 2000s
+- 2010s
+
+## Gender
+
+**Male** or **Female**
+
+## Genres
+
+- Avant-Garde
+- Blues
+- Children's
+- Classical
+- Comedy/Spoken
+- Country
+- Easy Listening
+- Electronic
+- Folk
+- Holiday
+- International
+- Jazz
+- Latin
+- New Age
+- Pop/Rock
+- R&B
+- Rap
+- Reggae
+- Religious
+- Stage & Screen
+- Vocal
+
+## Languages
+
+Abbreviation | Description
+-------------|------------
+de | German
+en | English
+es | Spanish
+fr | French
+it | Italian
+nl | Dutch
+pt | Portuguese
+ru | Russian
+sv | Swedish
 
 # Terms And Conditions
 
