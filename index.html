@@ -275,6 +275,14 @@ In the example to the right we are limiting the JSON response to include only th
 
 <h1 id="graph-search-api">Graph Search API</h1>
 
+<p>The Graph Search API allows you to dramatically expand your music service’s search capabilities, allowing your users to perform more powerful and more precise queries.</p>
+
+<p>With Graph Search, a user can easily traverse our ever-expanding graph ontology that includes hundreds of millions of entities (vertices) and connections (edges), as well as seven billion properties, making it one of the richest collection of music knowledge in the world.</p>
+
+<p>It is analogous to Facebook’s Graph Search, but instead of responding higher-level questions about a given user’s social graph, like in “Photos of and friends or coworkers and your current city”, Graph Search allows for deep queries within the music realm, as in for example “Artists similar to Rihanna, that are female and that have more than 100k followers in Twitter”.</p>
+
+<p>Try Graph Search today and let your users discover artists, albums and songs in the most powerful way possible.</p>
+
 <h2 id="artists">Artists</h2>
 
 <blockquote>
@@ -919,6 +927,21 @@ In the example to the right we are limiting the JSON response to include only th
 
 <h1 id="playlist-api">Playlist API</h1>
 
+<blockquote>
+<p><em>Search for a playlist with Pearl Jam as the seed artist&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v1/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&amp;api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre><pre class="highlight json"><span class="w">
+</span></pre>
+<p>The Playlisting API allows you to create powerful DMCA-compliant music recommendations based on hundreds of thousands of potential &ldquo;seed artists.&rdquo;</p>
+
+<p>One importantly differentiator in the way we generate our recommendations is that we use very powerful “graph algorithms” to select the best songs in a real-time for each user, which can take into account a large number of variables, such as musical similarities, personal taste, social relationships, market metrics, user context, etc.</p>
+
+<p>These “graph recommendation” approach not only results in much more personalized selections, but also in a more transparent experience for the end-user, as each recommendation comes with “evidence” that clearly explains why each song was selected. We can achieve this by “walking the graph” and taking note of each step taken in the decision process. What is even cooler is that depending on the user feedback, we can modify the “walk”, so that for example we can skip the “social nodes” in the event that the user hates his or her friends’ taste in music.</p>
+
+<p>Right now we only have our “Basic Playlist Generator” enabled, but we will add a ton of new features in the coming weeks that will allow you to fully leverage the full power of MusicGraph’s deep music knowledge.</p>
+
 <h3 id="example-endpoints">Example Endpoints</h3>
 
 <table><thead>
@@ -934,6 +957,33 @@ In the example to the right we are limiting the JSON response to include only th
 </tbody></table>
 
 <h1 id="music-data-api">Music Data API</h1>
+
+<p>Interested in mining the data yourself or building an app that requires deeper insight into some of the data we’ve generated? The Music Data plan provides detailed data about:</p>
+
+<ul>
+<li>Artists’ social media trends: Followers, song plays and video views across leading sources such as Twitter, Facebook, LastFM and Vevo.</li>
+<li>Lyrical features: for licensing reasons, rather than returning the full lyrics in a song, we extract and return the top 15 most “significant” words per song, hopefully giving you a general idea of what the song is about. A language code is also included in the results.</li>
+</ul>
+
+<p>For more details please check out our plans and get your free API key today.</p>
+
+<h2 id="artist-metrics">Artist Metrics</h2>
+
+<blockquote>
+<p><em>Search for metrics using Pearl Jam as the artist&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v1/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&amp;api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre><pre class="highlight json"><span class="w">
+</span></pre>
+<blockquote>
+<p><em>If you want to only view a specific data sources data, then pass the source name in the URL as shown below&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v1/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=APIKEY"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre><pre class="highlight json"><span class="w">
+</span></pre>
+<h2 id="lyrical-features">Lyrical Features</h2>
 
 <h3 id="example-endpoints">Example Endpoints</h3>
 
@@ -966,6 +1016,104 @@ In the example to the right we are limiting the JSON response to include only th
 </tbody></table>
 
 <h1 id="dictionary">Dictionary</h1>
+
+<h2 id="countries">Countries</h2>
+
+<p>Use standard 2-letter country codes as <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">described here</a>.</p>
+
+<h2 id="decades">Decades</h2>
+
+<ul>
+<li>1890s</li>
+<li>1900s</li>
+<li>1910s</li>
+<li>1920s</li>
+<li>1930s</li>
+<li>1940s</li>
+<li>1950s</li>
+<li>1960s</li>
+<li>1970s</li>
+<li>1980s</li>
+<li>1990s</li>
+<li>2000s</li>
+<li>2010s</li>
+</ul>
+
+<h2 id="gender">Gender</h2>
+
+<p><strong>Male</strong> or <strong>Female</strong></p>
+
+<h2 id="genres">Genres</h2>
+
+<ul>
+<li>Avant-Garde</li>
+<li>Blues</li>
+<li>Children&rsquo;s</li>
+<li>Classical</li>
+<li>Comedy/Spoken</li>
+<li>Country</li>
+<li>Easy Listening</li>
+<li>Electronic</li>
+<li>Folk</li>
+<li>Holiday</li>
+<li>International</li>
+<li>Jazz</li>
+<li>Latin</li>
+<li>New Age</li>
+<li>Pop/Rock</li>
+<li>R&amp;B</li>
+<li>Rap</li>
+<li>Reggae</li>
+<li>Religious</li>
+<li>Stage &amp; Screen</li>
+<li>Vocal</li>
+</ul>
+
+<h2 id="languages">Languages</h2>
+
+<table><thead>
+<tr>
+<th>Abbreviation</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>de</td>
+<td>German</td>
+</tr>
+<tr>
+<td>en</td>
+<td>English</td>
+</tr>
+<tr>
+<td>es</td>
+<td>Spanish</td>
+</tr>
+<tr>
+<td>fr</td>
+<td>French</td>
+</tr>
+<tr>
+<td>it</td>
+<td>Italian</td>
+</tr>
+<tr>
+<td>nl</td>
+<td>Dutch</td>
+</tr>
+<tr>
+<td>pt</td>
+<td>Portuguese</td>
+</tr>
+<tr>
+<td>ru</td>
+<td>Russian</td>
+</tr>
+<tr>
+<td>sv</td>
+<td>Swedish</td>
+</tr>
+</tbody></table>
 
 <h1 id="terms-and-conditions">Terms And Conditions</h1>
 
