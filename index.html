@@ -930,9 +930,32 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Search for a playlist with Pearl Jam as the seed artist&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v1/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&amp;api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v1/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&amp;fields=id,title,artist_name&amp;limit=3&amp;api_key=APIKEY"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-</pre><pre class="highlight json"><span class="w">
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"f1deb0dc-7ffd-8d9f-e98b-76180743da8f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Elderly Woman Behind The Counter In A Small Town"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"artist_name"</span><span class="p">:</span><span class="s2">"Pearl Jam"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"8138636f-02a6-9a61-1b22-46f80b6039d6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Lithium"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"artist_name"</span><span class="p">:</span><span class="s2">"Nirvana"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"3314061f-a6c0-11e0-b446-00251188dd67"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Jeremy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"artist_name"</span><span class="p">:</span><span class="s2">"Pearl Jam"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></pre>
 <p>The Playlisting API allows you to create powerful DMCA-compliant music recommendations based on hundreds of thousands of potential &ldquo;seed artists.&rdquo;</p>
 
