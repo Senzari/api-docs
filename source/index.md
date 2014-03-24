@@ -531,7 +531,7 @@ Description | Endpoint
 > *Search for a playlist with Pearl Jam as the seed artist...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v1/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v1/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&fields=id,title,artist_name&limit=3&api_key=APIKEY"
 ```
 
 ```http
@@ -539,7 +539,30 @@ HTTP/1.1 200 OK
 ```
 
 ```json
-
+{
+  "status":{
+    "api":"v1",
+    "code":0,
+    "message":"Success"
+  },
+  "data":[
+    {
+      "id":"f1deb0dc-7ffd-8d9f-e98b-76180743da8f",
+      "title":"Elderly Woman Behind The Counter In A Small Town",
+      "artist_name":"Pearl Jam"
+    },
+    {
+      "id":"8138636f-02a6-9a61-1b22-46f80b6039d6",
+      "title":"Lithium",
+      "artist_name":"Nirvana"
+    },
+    {
+      "id":"3314061f-a6c0-11e0-b446-00251188dd67",
+      "title":"Jeremy",
+      "artist_name":"Pearl Jam"
+    }
+  ]
+}
 ```
 
 The Playlisting API allows you to create powerful DMCA-compliant music recommendations based on hundreds of thousands of potential "seed artists."
