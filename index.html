@@ -89,7 +89,7 @@
 <blockquote>
 <p><em>Find the track id for Jimi Hendrix&rsquo;s &ldquo;Voodoo Child&rdquo;&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?&amp;artist_name=jimi+hendrix&amp;name=voodoo+childlimit=1&amp;fields=id&amp;api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?&amp;artist_name=jimi+hendrix&amp;name=voodoo+childlimit=1&amp;fields=id&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -151,7 +151,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>The requested object could not be found&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/tracks?api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">404</span> <span class="ne">Not Found</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -177,7 +177,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>The request could not be understood by the server&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?q=madonna&amp;api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?q=madonna&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -288,7 +288,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Find artists from the 1960s that sound similar to Jimi Hendrix&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?&amp;decade=1960s&amp;similar_to=Jimi+Hendrix&amp;limit=3&amp;fields=id,name&amp;api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?&amp;decade=1960s&amp;similar_to=Jimi+Hendrix&amp;limit=3&amp;fields=id,name&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -315,7 +315,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Search for female artists that are similar to Madonna&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?similar_to=Madonna&amp;gender=female&amp;limit=3&amp;fields=id,name&amp;api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?similar_to=Madonna&amp;gender=female&amp;limit=3&amp;fields=id,name&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -451,67 +451,67 @@ In the example to the right we are limiting the JSON response to include only th
 </thead><tbody>
 <tr>
 <td><strong>artist-metadata</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2</code></td>
 </tr>
 <tr>
 <td><strong>artist-albums</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=c26e63de67a52b71cfcb1b2fb63a14f2</code></td>
 </tr>
 <tr>
 <td><strong>artist-tracks</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2</code></td>
 </tr>
 <tr>
 <td><strong>artist-search-by-name</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=madonna</code></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;name=madonna</code></td>
 </tr>
 <tr>
 <td><strong>artist-similar-to</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna</code></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=madonna</code></td>
 </tr>
 <tr>
 <td><strong>artist-produced-by</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;produced_by=madonna</code></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;produced_by=madonna</code></td>
 </tr>
 <tr>
 <td><strong>artist-influenced</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced=madonna</code></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;influenced=madonna</code></td>
 </tr>
 <tr>
 <td><strong>artist-influenced-by</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced_by=madonna</code></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;influenced_by=madonna</code></td>
 </tr>
 <tr>
 <td><strong>artist-availops-influenced-by</strong></td>
-<td><code class="prettyprint">/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;influenced_by=madonna</code></td>
+<td><code class="prettyprint">/api/v2/artist/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;influenced_by=madonna</code></td>
 </tr>
 <tr>
 <td><strong>artist-filter-by-decade</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;decade=1990s</code></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=madonna&amp;decade=1990s</code></td>
 </tr>
 <tr>
 <td><strong>artist-filter-by-genre</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;genre=Rap</code></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=madonna&amp;genre=Rap</code></td>
 </tr>
 <tr>
 <td><strong>artist-filter-by-gender</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;gender=male</code></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=madonna&amp;gender=male</code></td>
 </tr>
 <tr>
 <td><strong>artist-availops-filter-by-gender</strong></td>
-<td><code class="prettyprint">/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=madonna&amp;gender=male</code></td>
+<td><code class="prettyprint">/api/v2/artist/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=madonna&amp;gender=male</code></td>
 </tr>
 <tr>
 <td><strong>artist-search-by-name-similar</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=madonna&amp;similar_to=bob dylan</code></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;name=madonna&amp;similar_to=bob dylan</code></td>
 </tr>
 <tr>
 <td><strong>artist-produced-influenced-by</strong></td>
-<td><code class="prettyprint">/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=u2&amp;influenced=Coldplay</code></td>
+<td><code class="prettyprint">/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=u2&amp;influenced=Coldplay</code></td>
 </tr>
 <tr>
 <td><strong>artist-suggest</strong></td>
-<td><code class="prettyprint">/api/v2/artist/suggest?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;prefix=madon</code></td>
+<td><code class="prettyprint">/api/v2/artist/suggest?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;prefix=madon</code></td>
 </tr>
 </tbody></table>
 
@@ -520,7 +520,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Find tracks featured on Michael Jackson&rsquo;s &ldquo;Thriller&rdquo; album&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&amp;api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -694,51 +694,51 @@ In the example to the right we are limiting the JSON response to include only th
 </thead><tbody>
 <tr>
 <td><strong>album-meta</strong></td>
-<td><code class="prettyprint">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=c26e63de67a52b71cfcb1b2fb63a14f2</code></td>
 </tr>
 <tr>
 <td><strong>album-tracks</strong></td>
-<td><code class="prettyprint">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2</code></td>
 </tr>
 <tr>
 <td><strong>album-by-title</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=Houses+Of+The+Holy</code></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;name=Houses+Of+The+Holy</code></td>
 </tr>
 <tr>
 <td><strong>album-by-artist</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=John+Lennon</code></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;artist_name=John+Lennon</code></td>
 </tr>
 <tr>
 <td><strong>album-similar-to</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;produced_by=Rick+Rubin</code></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;produced_by=Rick+Rubin</code></td>
 </tr>
 <tr>
 <td><strong>album-similar-to</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller</code></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=Thriller</code></td>
 </tr>
 <tr>
 <td><strong>album-availops-similar-to</strong></td>
-<td><code class="prettyprint">/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller</code></td>
+<td><code class="prettyprint">/api/v2/album/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=Thriller</code></td>
 </tr>
 <tr>
 <td><strong>album-similar-country</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;country=UK</code></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=21&amp;country=UK</code></td>
 </tr>
 <tr>
 <td><strong>album-similar-decade</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;decade=1990s</code></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=21&amp;decade=1990s</code></td>
 </tr>
 <tr>
 <td><strong>album-similar-genre</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=21&amp;genre=Rap</code></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=21&amp;genre=Rap</code></td>
 </tr>
 <tr>
 <td><strong>album-similar-top-rated</strong></td>
-<td><code class="prettyprint">/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller&amp;top_rated=true</code></td>
+<td><code class="prettyprint">/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=Thriller&amp;top_rated=true</code></td>
 </tr>
 <tr>
 <td><strong>album-availops-similar-top-rated</strong></td>
-<td><code class="prettyprint">/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;similar_to=Thriller&amp;top_rated=true</code></td>
+<td><code class="prettyprint">/api/v2/album/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;similar_to=Thriller&amp;top_rated=true</code></td>
 </tr>
 </tbody></table>
 
@@ -747,7 +747,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Find tracks by Eminem that feature Rihanna as a guest vocalist&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&amp;featuring_artist=rihanna&amp;limit=1&amp;fields=id,title,artist_name,album_title&amp;api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&amp;featuring_artist=rihanna&amp;limit=1&amp;fields=id,title,artist_name,album_title&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -768,7 +768,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Find tracks written by Eminem about his daughter, Hailie&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&amp;lyrics_phrase=hailie&amp;limit=5&amp;fields=title&amp;api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&amp;lyrics_phrase=hailie&amp;limit=5&amp;fields=title&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -893,35 +893,35 @@ In the example to the right we are limiting the JSON response to include only th
 </thead><tbody>
 <tr>
 <td><strong>track-meta</strong></td>
-<td><code class="prettyprint">/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2</code></td>
 </tr>
 <tr>
 <td><strong>track-by-title</strong></td>
-<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;name=Royals</code></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;name=Royals</code></td>
 </tr>
 <tr>
 <td><strong>track-artist_name</strong></td>
-<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=Pink</code></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;artist_name=Pink</code></td>
 </tr>
 <tr>
 <td><strong>track-composed_by</strong></td>
-<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;composed_by=Sting</code></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;composed_by=Sting</code></td>
 </tr>
 <tr>
 <td><strong>track-featuring_artist</strong></td>
-<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;featuring_artist=Rihanna</code></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;featuring_artist=Rihanna</code></td>
 </tr>
 <tr>
 <td><strong>track-availops-featuring_artist</strong></td>
-<td><code class="prettyprint">/api/v2/track/**availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;featuring_artist=Rihanna</code></td>
+<td><code class="prettyprint">/api/v2/track/**availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;featuring_artist=Rihanna</code></td>
 </tr>
 <tr>
 <td><strong>track-artist-decade</strong></td>
-<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=Lorde&amp;decade=2010s</code></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;artist_name=Lorde&amp;decade=2010s</code></td>
 </tr>
 <tr>
 <td><strong>track-inspired-genre</strong></td>
-<td><code class="prettyprint">/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_name=Shakira&amp;genre=New Age</code></td>
+<td><code class="prettyprint">/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&amp;artist_name=Shakira&amp;genre=New Age</code></td>
 </tr>
 </tbody></table>
 
@@ -930,11 +930,11 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Search for a playlist with Pearl Jam as the seed artist&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v1/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&amp;fields=id,title,artist_name&amp;limit=3&amp;api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&amp;fields=id,title,artist_name&amp;limit=3&amp;api_key=c8e73991124fd6b5e8a62c4f7160496d"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
-    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -975,7 +975,7 @@ In the example to the right we are limiting the JSON response to include only th
 </thead><tbody>
 <tr>
 <td><strong>playlist-artist-id</strong></td>
-<td><code class="prettyprint">/api/v2/playlist?api_key=39ab48c2c0ff9adc16feebf710e43763&amp;artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67</code></td>
+<td><code class="prettyprint">/api/v2/playlist?api_key=c8e73991124fd6b5e8a62c4f7160496d&amp;artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67</code></td>
 </tr>
 </tbody></table>
 
@@ -995,16 +995,145 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Search for metrics using Pearl Jam as the artist&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v1/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&amp;api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&amp;api_key=fcffa99e795c2f3996c843fd8069ee36"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-</pre><pre class="highlight json"><span class="w">
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"e2ffceb5-a6b5-11e0-b446-00251188dd67"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"twitter"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361433197</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">2409521</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"following"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361433197</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">427</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"tweets"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361433197</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">2360</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://twitter.com/pearljam"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lastfm"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"listeners"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1394556777947</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">2400627</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"playcount"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1394556777947</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">117438534</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="err">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Pearl Jam"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"facebook"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361446281</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">9526470</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://www.facebook.com/pearljam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"people_talking_about"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361446281</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">192778</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"vevo"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"viewsLastDay"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361446360</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">35765</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"viewsLastMonth"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361446360</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">1901633</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"viewsLastWeek"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361446360</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">421046</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"viewsTotal"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361446360</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">99008399</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"na"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"offset"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></pre>
 <blockquote>
 <p><em>If you want to only view a specific data sources data, then pass the source name in the URL as shown below&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v1/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=APIKEY"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=fcffa99e795c2f3996c843fd8069ee36"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-</pre><pre class="highlight json"><span class="w">
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"e2ffceb5-a6b5-11e0-b446-00251188dd67"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"twitter"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361433197</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">2409521</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"following"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361433197</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">427</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"tweets"</span><span class="p">:{</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="mi">1395361433197</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">2360</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://twitter.com/pearljam"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Pearl Jam"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"offset"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></pre>
 <h2 id="lyrical-features">Lyrical Features</h2>
 
@@ -1018,23 +1147,23 @@ In the example to the right we are limiting the JSON response to include only th
 </thead><tbody>
 <tr>
 <td><strong>artist-metrics</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=fcffa99e795c2f3996c843fd8069ee36</code></td>
 </tr>
 <tr>
 <td><strong>artist-metrics-lastfm</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=fcffa99e795c2f3996c843fd8069ee36</code></td>
 </tr>
 <tr>
 <td><strong>artist-metrics-twitter</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=fcffa99e795c2f3996c843fd8069ee36</code></td>
 </tr>
 <tr>
 <td><strong>artist-metrics-vevo</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=fcffa99e795c2f3996c843fd8069ee36</code></td>
 </tr>
 <tr>
 <td><strong>artist-metrics-lastfm</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=39ab48c2c0ff9adc16feebf710e43763</code></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=fcffa99e795c2f3996c843fd8069ee36</code></td>
 </tr>
 </tbody></table>
 
