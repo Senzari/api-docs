@@ -16,7 +16,7 @@ All requests made to the MusicGraph API must be authenticated with an API key. T
 > *Find the track id for Jimi Hendrix's "Voodoo Child"...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/track/search?&artist_name=jimi+hendrix&name=voodoo+childlimit=1&fields=id&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/track/search?&artist_name=jimi+hendrix&name=voodoo+childlimit=1&fields=id&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -63,7 +63,7 @@ Name | Description
 > *The requested object could not be found...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/tracks?api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -103,7 +103,7 @@ HTTP/1.1 403 Forbidden
 > *The request could not be understood by the server...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/artist/search?q=madonna&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/artist/search?q=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -163,7 +163,7 @@ Try Graph Search today and let your users discover artists, albums and songs in 
 > *Find artists from the 1960s that sound similar to Jimi Hendrix...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/artist/search?&decade=1960s&similar_to=Jimi+Hendrix&limit=3&fields=id,name&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/artist/search?&decade=1960s&similar_to=Jimi+Hendrix&limit=3&fields=id,name&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -197,7 +197,7 @@ HTTP/1.1 200 OK
 > *Search for female artists that are similar to Madonna...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/artist/search?similar_to=Madonna&gender=female&limit=3&fields=id,name&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/artist/search?similar_to=Madonna&gender=female&limit=3&fields=id,name&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -266,29 +266,29 @@ Parameter | Description
 
 Description | Endpoint
 ------------|---------
-**artist-metadata** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-albums** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-tracks** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-search-by-name** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=madonna`
-**artist-similar-to** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna`
-**artist-produced-by** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&produced_by=madonna`
-**artist-influenced** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&influenced=madonna`
-**artist-influenced-by** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&influenced_by=madonna`
-**artist-availops-influenced-by** | `/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&influenced_by=madonna`
-**artist-filter-by-decade** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&decade=1990s`
-**artist-filter-by-genre** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&genre=Rap`
-**artist-filter-by-gender** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&gender=male`
-**artist-availops-filter-by-gender** | `/api/v2/artist/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=madonna&gender=male`
-**artist-search-by-name-similar** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=madonna&similar_to=bob dylan`
-**artist-produced-influenced-by** | `/api/v2/artist/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=u2&influenced=Coldplay`
-**artist-suggest** | `/api/v2/artist/suggest?api_key=39ab48c2c0ff9adc16feebf710e43763&prefix=madon`
+**artist-metadata** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
+**artist-albums** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
+**artist-tracks** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
+**artist-search-by-name** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=madonna`
+**artist-similar-to** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna`
+**artist-produced-by** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&produced_by=madonna`
+**artist-influenced** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&influenced=madonna`
+**artist-influenced-by** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&influenced_by=madonna`
+**artist-availops-influenced-by** | `/api/v2/artist/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&influenced_by=madonna`
+**artist-filter-by-decade** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&decade=1990s`
+**artist-filter-by-genre** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&genre=Rap`
+**artist-filter-by-gender** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&gender=male`
+**artist-availops-filter-by-gender** | `/api/v2/artist/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&gender=male`
+**artist-search-by-name-similar** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=madonna&similar_to=bob dylan`
+**artist-produced-influenced-by** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=u2&influenced=Coldplay`
+**artist-suggest** | `/api/v2/artist/suggest?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&prefix=madon`
 
 ## Albums
 
 > *Find tracks featured on Michael Jackson's "Thriller" album...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -402,25 +402,25 @@ Parameter | Description
 
 Description | Endpoint
 ------------|---------
-**album-meta** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**album-tracks** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**album-by-title** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=Houses+Of+The+Holy`
-**album-by-artist** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_name=John+Lennon`
-**album-similar-to** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&produced_by=Rick+Rubin`
-**album-similar-to** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller`
-**album-availops-similar-to** | `/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller`
-**album-similar-country** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=21&country=UK`
-**album-similar-decade** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=21&decade=1990s`
-**album-similar-genre** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=21&genre=Rap`
-**album-similar-top-rated** | `/api/v2/album/search?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller&top_rated=true`
-**album-availops-similar-top-rated** | `/api/v2/album/availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&similar_to=Thriller&top_rated=true`
+**album-meta** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
+**album-tracks** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
+**album-by-title** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=Houses+Of+The+Holy`
+**album-by-artist** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&artist_name=John+Lennon`
+**album-similar-to** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&produced_by=Rick+Rubin`
+**album-similar-to** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller`
+**album-availops-similar-to** | `/api/v2/album/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller`
+**album-similar-country** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=21&country=UK`
+**album-similar-decade** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=21&decade=1990s`
+**album-similar-genre** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=21&genre=Rap`
+**album-similar-top-rated** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller&top_rated=true`
+**album-availops-similar-top-rated** | `/api/v2/album/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller&top_rated=true`
 
 ## Tracks
 
 > *Find tracks by Eminem that feature Rihanna as a guest vocalist...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&featuring_artist=rihanna&limit=1&fields=id,title,artist_name,album_title&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&featuring_artist=rihanna&limit=1&fields=id,title,artist_name,album_title&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -448,7 +448,7 @@ HTTP/1.1 200 OK
 > *Find tracks written by Eminem about his daughter, Hailie...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&lyrics_phrase=hailie&limit=5&fields=title&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&lyrics_phrase=hailie&limit=5&fields=title&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -517,21 +517,21 @@ Parameter | Description
 
 Description | Endpoint
 ------------|---------
-**track-meta** | `/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**track-by-title** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&name=Royals`
-**track-artist_name** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_name=Pink`
-**track-composed_by** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&composed_by=Sting`
-**track-featuring_artist** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&featuring_artist=Rihanna`
-**track-availops-featuring_artist** | `/api/v2/track/**availableoperations?api_key=39ab48c2c0ff9adc16feebf710e43763&featuring_artist=Rihanna`
-**track-artist-decade** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_name=Lorde&decade=2010s`
-**track-inspired-genre** | `/api/v2/track/search?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_name=Shakira&genre=New Age`
+**track-meta** | `/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
+**track-by-title** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=Royals`
+**track-artist_name** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&artist_name=Pink`
+**track-composed_by** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&composed_by=Sting`
+**track-featuring_artist** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&featuring_artist=Rihanna`
+**track-availops-featuring_artist** | `/api/v2/track/**availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&featuring_artist=Rihanna`
+**track-artist-decade** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&artist_name=Lorde&decade=2010s`
+**track-inspired-genre** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&artist_name=Shakira&genre=New Age`
 
 # Playlist API
 
 > *Search for a playlist with Pearl Jam as the seed artist...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v1/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&fields=id,title,artist_name&limit=3&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&fields=id,title,artist_name&limit=3&api_key=c8e73991124fd6b5e8a62c4f7160496d"
 ```
 
 ```http
@@ -541,7 +541,7 @@ HTTP/1.1 200 OK
 ```json
 {
   "status":{
-    "api":"v1",
+    "api":"v2",
     "code":0,
     "message":"Success"
   },
@@ -577,7 +577,7 @@ Right now we only have our “Basic Playlist Generator” enabled, but we will a
 
 Description | Endpoint
 ------------|---------
-**playlist-artist-id** | `/api/v2/playlist?api_key=39ab48c2c0ff9adc16feebf710e43763&artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67`
+**playlist-artist-id** | `/api/v2/playlist?api_key=c8e73991124fd6b5e8a62c4f7160496d&artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67`
 
 # Music Data API
 
@@ -593,7 +593,7 @@ For more details please check out our plans and get your free API key today.
 > *Search for metrics using Pearl Jam as the artist...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v1/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&api_key=fcffa99e795c2f3996c843fd8069ee36"
 ```
 
 ```http
@@ -601,13 +601,106 @@ HTTP/1.1 200 OK
 ```
 
 ```json
-
+{
+  "status":{
+    "api":"v2",
+    "code":0,
+    "message":"Success"
+  },
+  "total":1,
+  "count":1,
+  "data":[
+    {
+      "id":"e2ffceb5-a6b5-11e0-b446-00251188dd67",
+      "twitter":{
+        "followers":{
+          "data":{
+            "time":1395361433197,
+            "value":2409521
+          }
+        },
+        "following":{
+          "data":{
+            "time":1395361433197,
+            "value":427
+          }
+        },
+        "tweets":{
+          "data":{
+            "time":1395361433197,
+            "value":2360
+          }
+        },
+        "url":"https://twitter.com/pearljam"
+      },
+      "lastfm":{
+        "listeners":{
+          "data":{
+            "time":1394556777947,
+            "value":2400627
+          }
+        },
+        "playcount":{
+          "data":{
+            "time":1394556777947,
+            "value":117438534
+          }
+        },
+        "url":null
+      },
+      "name":"Pearl Jam",
+      "facebook":{
+        "likes":{
+          "data":{
+            "time":1395361446281,
+            "value":9526470
+          }
+        },
+        "url":"https://www.facebook.com/pearljam",
+        "people_talking_about":{
+          "data":{
+            "time":1395361446281,
+            "value":192778
+          }
+        }
+      },
+      "vevo":{
+        "viewsLastDay":{
+          "data":{
+            "time":1395361446360,
+            "value":35765
+          }
+        },
+        "viewsLastMonth":{
+          "data":{
+            "time":1395361446360,
+            "value":1901633
+          }
+        },
+        "viewsLastWeek":{
+          "data":{
+            "time":1395361446360,
+            "value":421046
+          }
+        },
+        "viewsTotal":{
+          "data":{
+            "time":1395361446360,
+            "value":99008399
+          }
+        },
+        "url":"na"
+      }
+    }
+  ],
+  "offset":1
+}
 ```
 
 > *If you want to only view a specific data sources data, then pass the source name in the URL as shown below...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v1/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=APIKEY"
+$ curl "http://api.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=fcffa99e795c2f3996c843fd8069ee36"
 ```
 
 ```http
@@ -615,7 +708,43 @@ HTTP/1.1 200 OK
 ```
 
 ```json
-
+{
+  "status":{
+    "api":"v2",
+    "code":0,
+    "message":"Success"
+  },
+  "total":1,
+  "count":1,
+  "data":[
+    {
+      "id":"e2ffceb5-a6b5-11e0-b446-00251188dd67",
+      "twitter":{
+        "followers":{
+          "data":{
+            "time":1395361433197,
+            "value":2409521
+          }
+        },
+        "following":{
+          "data":{
+            "time":1395361433197,
+            "value":427
+          }
+        },
+        "tweets":{
+          "data":{
+            "time":1395361433197,
+            "value":2360
+          }
+        },
+        "url":"https://twitter.com/pearljam"
+      },
+      "name":"Pearl Jam"
+    }
+  ],
+  "offset":1
+}
 ```
 
 ## Lyrical Features
@@ -624,11 +753,11 @@ HTTP/1.1 200 OK
 
 Description | Endpoint
 ------------|---------
-**artist-metrics** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-metrics-twitter** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-metrics-vevo** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=39ab48c2c0ff9adc16feebf710e43763`
-**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=39ab48c2c0ff9adc16feebf710e43763`
+**artist-metrics** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=fcffa99e795c2f3996c843fd8069ee36`
+**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=fcffa99e795c2f3996c843fd8069ee36`
+**artist-metrics-twitter** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=fcffa99e795c2f3996c843fd8069ee36`
+**artist-metrics-vevo** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=fcffa99e795c2f3996c843fd8069ee36`
+**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=fcffa99e795c2f3996c843fd8069ee36`
 
 # Dictionary
 
