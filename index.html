@@ -70,7 +70,7 @@
       
       <ul class="toc-footer">
         
-          <li><a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key</a></li>
+          <li><center><a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key<br />No Credit Card Required</a></center></li>
         
       </ul>
       
@@ -80,16 +80,30 @@
       <div class="content">
         <h1 id="overview">Overview</h1>
 
-<p>Welcome to the MusicGraph API documentation! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph structure that you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.</p>
+<p>Welcome to the MusicGraph API documentation! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph database, which you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.</p>
 
-<p>All requests made to the MusicGraph API must be authenticated with an API key. The API key used in this document is for demonstration purposes only. It should not be used for any other application as it is rate limited. You can <a title="Sign Up for a Developer Key" href="https://developer.musicgraph.com/#plans">sign up for a free account here</a>.</p>
+<p>All requests made to the MusicGraph API must be signed with an API key. The API key used in this document is for demonstration purposes only. It should not be used for any other application as it is rate limited and restricted by IP. You can <a title="Sign Up for a Developer Key" href="https://developer.musicgraph.com/#plans">sign up for a free account here</a>.</p>
+
+<h3 id="required-parameter">Required Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>api_key</strong></td>
+<td>Your API key</td>
+</tr>
+</tbody></table>
 
 <h2 id="sending-requests">Sending Requests</h2>
 
 <blockquote>
 <p><em>Find the track id for Jimi Hendrix&rsquo;s &ldquo;Voodoo Child&rdquo;&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?&amp;artist_name=jimi+hendrix&amp;name=voodoo+childlimit=1&amp;fields=id&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/track/search?&amp;artist_name=jimi+hendrix&amp;name=voodoo+childlimit=1&amp;fields=id&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -104,25 +118,11 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
-<p>The MusicGraph API is strongly typed. In addition to having a type, objects stored in the graph also have a unique ID. Most objects support a metadata lookup. You can retrieve an object&rsquo;s metadata using its ID.</p>
+<p>The MusicGraph API is strongly typed. In addition to having a type, each resource also has a unique ID. In the example to the right we are limiting the JSON response to include only the id field for the artist object.</p>
 
 <p><aside class="notice">
-In the example to the right we are limiting the JSON response to include only the id field for the artist object. Try sending the request without the <code class="prettyprint">fields</code> paramter, see what happens!
+Try sending the example request without the <code class="prettyprint">fields</code> paramter, see what happens!
 </aside></p>
-
-<h3 id="required-parmeter">Required Parmeter</h3>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>api_key</strong></td>
-<td>Your API key</td>
-</tr>
-</tbody></table>
 
 <h3 id="optional-parameters">Optional Parameters</h3>
 
@@ -138,7 +138,7 @@ In the example to the right we are limiting the JSON response to include only th
 </tr>
 <tr>
 <td><strong>limit</strong></td>
-<td>Limit the number of results (max = 100; default = 15)</td>
+<td>Limit the number of results; max is 100, default is 15</td>
 </tr>
 <tr>
 <td><strong>offset</strong></td>
@@ -146,12 +146,14 @@ In the example to the right we are limiting the JSON response to include only th
 </tr>
 </tbody></table>
 
+<p>You can use the <code class="prettyprint">offset</code> and <code class="prettyprint">limit</code> parameters to page through query results.</p>
+
 <h2 id="error-handling">Error Handling</h2>
 
 <blockquote>
 <p><em>The requested object could not be found&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">404</span> <span class="ne">Not Found</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -164,7 +166,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Access denied because no API key was included in the request&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/e36675b4-a6b5-11e0-b446-00251188dd67"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/e36675b4-a6b5-11e0-b446-00251188dd67"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">403</span> <span class="ne">Forbidden</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -177,7 +179,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>The request could not be understood by the server&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?q=madonna&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/artist/search?q=madonna&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -187,6 +189,8 @@ In the example to the right we are limiting the JSON response to include only th
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
+<p>The response you receive will vary based on the node or edge that you are reading, but it will take the following general form:</p>
+
 <p>The MusicGraph API uses standard HTTP/1.1 response codes as described in <a title="The HTTP/1.1 Standard" href="http://tools.ietf.org/html/rfc2616">RFC 2616</a> to indicate the success or failure of an API request. Codes in the 2xx range indicate success, codes in the 4xx and 5xx ranges indicate an error; for example, an invalid id, missing api key, or type exception.</p>
 
 <h3 id="http-response-codes">HTTP Response Codes</h3>
@@ -288,7 +292,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Find artists from the 1960s that sound similar to Jimi Hendrix&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?&amp;decade=1960s&amp;similar_to=Jimi+Hendrix&amp;limit=3&amp;fields=id,name&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/artist/search?&amp;decade=1960s&amp;similar_to=Jimi+Hendrix&amp;limit=3&amp;fields=id,name&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -315,7 +319,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Search for female artists that are similar to Madonna&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/artist/search?similar_to=Madonna&amp;gender=female&amp;limit=3&amp;fields=id,name&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=Madonna&amp;gender=female&amp;limit=3&amp;fields=id,name&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -520,7 +524,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Find tracks featured on Michael Jackson&rsquo;s &ldquo;Thriller&rdquo; album&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -747,7 +751,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Find tracks by Eminem that feature Rihanna as a guest vocalist&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&amp;featuring_artist=rihanna&amp;limit=1&amp;fields=id,title,artist_name,album_title&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/track/search?artist_name=eminem&amp;featuring_artist=rihanna&amp;limit=1&amp;fields=id,title,artist_name,album_title&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -768,7 +772,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Find tracks written by Eminem about his daughter, Hailie&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&amp;lyrics_phrase=hailie&amp;limit=5&amp;fields=title&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/track/search?artist_name=eminem&amp;lyrics_phrase=hailie&amp;limit=5&amp;fields=title&amp;api_key=c26e63de67a52b71cfcb1b2fb63a14f2"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -930,7 +934,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Search for a playlist with Pearl Jam as the seed artist&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&amp;fields=id,title,artist_name&amp;limit=3&amp;api_key=c8e73991124fd6b5e8a62c4f7160496d"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&amp;fields=id,title,artist_name&amp;limit=3&amp;api_key=c8e73991124fd6b5e8a62c4f7160496d"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -995,7 +999,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>Search for metrics using Pearl Jam as the artist&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&amp;api_key=fcffa99e795c2f3996c843fd8069ee36"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&amp;api_key=fcffa99e795c2f3996c843fd8069ee36"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -1095,7 +1099,7 @@ In the example to the right we are limiting the JSON response to include only th
 <blockquote>
 <p><em>If you want to only view a specific data sources data, then pass the source name in the URL as shown below&hellip;</em></p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=fcffa99e795c2f3996c843fd8069ee36"</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=fcffa99e795c2f3996c843fd8069ee36"</span>
 </pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 </pre><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
@@ -1167,105 +1171,213 @@ In the example to the right we are limiting the JSON response to include only th
 </tr>
 </tbody></table>
 
-<h1 id="dictionary">Dictionary</h1>
+<h1 id="type-dictionary">Type Dictionary</h1>
 
-<h2 id="countries">Countries</h2>
+<h2 id="country-codes">Country Codes</h2>
 
-<p>Use standard 2-letter country codes as <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">described here</a>.</p>
-
-<h2 id="decades">Decades</h2>
-
-<ul>
-<li>1890s</li>
-<li>1900s</li>
-<li>1910s</li>
-<li>1920s</li>
-<li>1930s</li>
-<li>1940s</li>
-<li>1950s</li>
-<li>1960s</li>
-<li>1970s</li>
-<li>1980s</li>
-<li>1990s</li>
-<li>2000s</li>
-<li>2010s</li>
-</ul>
-
-<h2 id="gender">Gender</h2>
-
-<p><strong>Male</strong> or <strong>Female</strong></p>
-
-<h2 id="genres">Genres</h2>
-
-<ul>
-<li>Avant-Garde</li>
-<li>Blues</li>
-<li>Children&rsquo;s</li>
-<li>Classical</li>
-<li>Comedy/Spoken</li>
-<li>Country</li>
-<li>Easy Listening</li>
-<li>Electronic</li>
-<li>Folk</li>
-<li>Holiday</li>
-<li>International</li>
-<li>Jazz</li>
-<li>Latin</li>
-<li>New Age</li>
-<li>Pop/Rock</li>
-<li>R&amp;B</li>
-<li>Rap</li>
-<li>Reggae</li>
-<li>Religious</li>
-<li>Stage &amp; Screen</li>
-<li>Vocal</li>
-</ul>
-
-<h2 id="languages">Languages</h2>
+<p>Use standard 2-letter <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 country codes</a>:</p>
 
 <table><thead>
 <tr>
-<th>Abbreviation</th>
+<th>Value</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>de</td>
+<td><strong>AR</strong></td>
+<td>Argentina</td>
+</tr>
+<tr>
+<td><strong>AU</strong></td>
+<td>Australia</td>
+</tr>
+<tr>
+<td><strong>BR</strong></td>
+<td>Brazil</td>
+</tr>
+<tr>
+<td><strong>BS</strong></td>
+<td>Bahamas</td>
+</tr>
+<tr>
+<td><strong>CA</strong></td>
+<td>Canada</td>
+</tr>
+<tr>
+<td><strong>CH</strong></td>
+<td>Switzerland</td>
+</tr>
+<tr>
+<td><strong>CL</strong></td>
+<td>Chile</td>
+</tr>
+<tr>
+<td><strong>CN</strong></td>
+<td>China</td>
+</tr>
+<tr>
+<td><strong>CO</strong></td>
+<td>Colombia</td>
+</tr>
+<tr>
+<td><strong>DE</strong></td>
+<td>Germany</td>
+</tr>
+<tr>
+<td><strong>EG</strong></td>
+<td>Egypt</td>
+</tr>
+<tr>
+<td><strong>ES</strong></td>
+<td>Spain</td>
+</tr>
+<tr>
+<td><strong>FR</strong></td>
+<td>France</td>
+</tr>
+<tr>
+<td><strong>GB</strong></td>
+<td>United Kingdom</td>
+</tr>
+<tr>
+<td><strong>GR</strong></td>
+<td>Greece</td>
+</tr>
+<tr>
+<td><strong>IE</strong></td>
+<td>Ireland</td>
+</tr>
+<tr>
+<td><strong>IL</strong></td>
+<td>Israel</td>
+</tr>
+<tr>
+<td><strong>IR</strong></td>
+<td>Iran</td>
+</tr>
+<tr>
+<td><strong>IT</strong></td>
+<td>Italy</td>
+</tr>
+<tr>
+<td><strong>JP</strong></td>
+<td>Japan</td>
+</tr>
+<tr>
+<td><strong>MX</strong></td>
+<td>Mexico</td>
+</tr>
+<tr>
+<td><strong>NL</strong></td>
+<td>Netherlands</td>
+</tr>
+<tr>
+<td><strong>RO</strong></td>
+<td>Romania</td>
+</tr>
+<tr>
+<td><strong>RU</strong></td>
+<td>Russia</td>
+</tr>
+<tr>
+<td><strong>US</strong></td>
+<td>United States</td>
+</tr>
+</tbody></table>
+
+<h2 id="decade-values">Decade Values</h2>
+
+<p>Any of the following strings:</p>
+
+<table>
+<tr><th>Value</th></tr>
+<tr><td>1890s</td></tr>
+<tr><td>1900s</td></tr>
+<tr><td>1910s</td></tr>
+<tr><td>1920s</td></tr>
+<tr><td>1930s</td></tr>
+<tr><td>1940s</td></tr>
+<tr><td>1950s</td></tr>
+<tr><td>1960s</td></tr>
+<tr><td>1970s</td></tr>
+<tr><td>1980s</td></tr>
+<tr><td>1990s</td></tr>
+<tr><td>2000s</td></tr>
+<tr><td>2010s</td></tr>
+</table>
+
+<h2 id="language-options">Language Options</h2>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>DE</strong></td>
 <td>German</td>
 </tr>
 <tr>
-<td>en</td>
+<td><strong>EN</strong></td>
 <td>English</td>
 </tr>
 <tr>
-<td>es</td>
+<td><strong>ES</strong></td>
 <td>Spanish</td>
 </tr>
 <tr>
-<td>fr</td>
+<td><strong>FR</strong></td>
 <td>French</td>
 </tr>
 <tr>
-<td>it</td>
+<td><strong>IT</strong></td>
 <td>Italian</td>
 </tr>
 <tr>
-<td>nl</td>
+<td><strong>NL</strong></td>
 <td>Dutch</td>
 </tr>
 <tr>
-<td>pt</td>
+<td><strong>PT</strong></td>
 <td>Portuguese</td>
 </tr>
 <tr>
-<td>ru</td>
+<td><strong>RU</strong></td>
 <td>Russian</td>
 </tr>
 <tr>
-<td>sv</td>
+<td><strong>SV</strong></td>
 <td>Swedish</td>
 </tr>
 </tbody></table>
+
+<h2 id="musical-genres">Musical Genres</h2>
+
+<table>
+<tr><th>Value</th></tr>
+<tr><td>Avant-Garde</td></tr>
+<tr><td>Blues</td></tr>
+<tr><td>Children&rsquo;s</td></tr>
+<tr><td>Classical</td></tr>
+<tr><td>Comedy/Spoken</td></tr>
+<tr><td>Country</td></tr>
+<tr><td>Easy Listening</td></tr>
+<tr><td>Electronic</td></tr>
+<tr><td>Folk</td></tr>
+<tr><td>Holiday</td></tr>
+<tr><td>International</td></tr>
+<tr><td>Jazz</td></tr>
+<tr><td>Latin</td></tr>
+<tr><td>New Age</td></tr>
+<tr><td>Pop/Rock</td></tr>
+<tr><td>R&B</td></tr>
+<tr><td>Rap</td></tr>
+<tr><td>Reggae</td></tr>
+<tr><td>Religious</td></tr>
+<tr><td>Stage & Screen</td></tr>
+<tr><td>Vocal</td></tr>
+</table>
 
 <h1 id="terms-and-conditions">Terms And Conditions</h1>
 
