@@ -2,21 +2,27 @@
 title: MusicGraph API Reference
 
 toc_footers:
- - <a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key</a>
+ - <center><a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key<br />No Credit Card Required</a></center>
 ---
 
 # Overview
 
-Welcome to the MusicGraph API documentation! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph structure that you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.
+Welcome to the MusicGraph API documentation! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph database, which you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.
 
-All requests made to the MusicGraph API must be authenticated with an API key. The API key used in this document is for demonstration purposes only. It should not be used for any other application as it is rate limited. You can [sign up for a free account here](https://developer.musicgraph.com/#plans "Sign Up for a Developer Key").
+All requests made to the MusicGraph API must be signed with an API key. The API key used in this document is for demonstration purposes only. It should not be used for any other application as it is rate limited and restricted by IP. You can [sign up for a free account here](https://developer.musicgraph.com/#plans "Sign Up for a Developer Key").
+
+### Required Parameter
+
+Name | Description
+-----|------------
+**api_key** | Your API key
 
 ## Sending Requests
 
 > *Find the track id for Jimi Hendrix's "Voodoo Child"...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/track/search?&artist_name=jimi+hendrix&name=voodoo+childlimit=1&fields=id&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
+$ curl "http://api.v2.musicgraph.com/api/v2/track/search?&artist_name=jimi+hendrix&name=voodoo+childlimit=1&fields=id&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -38,32 +44,28 @@ HTTP/1.1 200 OK
 }
 ```
 
-The MusicGraph API is strongly typed. In addition to having a type, objects stored in the graph also have a unique ID. Most objects support a metadata lookup. You can retrieve an object's metadata using its ID.
+The MusicGraph API is strongly typed. In addition to having a type, each resource also has a unique ID. In the example to the right we are limiting the JSON response to include only the id field for the artist object.
 
 <aside class="notice">
-In the example to the right we are limiting the JSON response to include only the id field for the artist object. Try sending the request without the `fields` paramter, see what happens!
+Try sending the example request without the `fields` paramter, see what happens!
 </aside>
-
-### Required Parmeter
-
-Name | Description
------|------------
-**api_key** | Your API key
 
 ### Optional Parameters
 
 Name | Description
 -----|------------
 **fields** | Limit the set of returned properties; comma-separated
-**limit** | Limit the number of results (max = 100; default = 15)
+**limit** | Limit the number of results; max is 100, default is 15
 **offset** | Paginate the results set
+
+You can use the `offset` and `limit` parameters to page through query results.
 
 ## Error Handling
 
 > *The requested object could not be found...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
+$ curl "http://api.v2.musicgraph.com/api/v2/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -83,7 +85,7 @@ HTTP/1.1 404 Not Found
 > *Access denied because no API key was included in the request...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/e36675b4-a6b5-11e0-b446-00251188dd67"
+$ curl "http://api.v2.musicgraph.com/api/v2/e36675b4-a6b5-11e0-b446-00251188dd67"
 ```
 
 ```http
@@ -103,7 +105,7 @@ HTTP/1.1 403 Forbidden
 > *The request could not be understood by the server...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/artist/search?q=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
+$ curl "http://api.v2.musicgraph.com/api/v2/artist/search?q=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -119,6 +121,8 @@ HTTP/1.1 400 Bad Request
   }
 }
 ```
+
+The response you receive will vary based on the node or edge that you are reading, but it will take the following general form:
 
 The MusicGraph API uses standard HTTP/1.1 response codes as described in [RFC 2616](http://tools.ietf.org/html/rfc2616 "The HTTP/1.1 Standard") to indicate the success or failure of an API request. Codes in the 2xx range indicate success, codes in the 4xx and 5xx ranges indicate an error; for example, an invalid id, missing api key, or type exception.
 
@@ -163,7 +167,7 @@ Try Graph Search today and let your users discover artists, albums and songs in 
 > *Find artists from the 1960s that sound similar to Jimi Hendrix...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/artist/search?&decade=1960s&similar_to=Jimi+Hendrix&limit=3&fields=id,name&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
+$ curl "http://api.v2.musicgraph.com/api/v2/artist/search?&decade=1960s&similar_to=Jimi+Hendrix&limit=3&fields=id,name&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -197,7 +201,7 @@ HTTP/1.1 200 OK
 > *Search for female artists that are similar to Madonna...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/artist/search?similar_to=Madonna&gender=female&limit=3&fields=id,name&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
+$ curl "http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=Madonna&gender=female&limit=3&fields=id,name&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -288,7 +292,7 @@ Description | Endpoint
 > *Find tracks featured on Michael Jackson's "Thriller" album...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
+$ curl "http://api.v2.musicgraph.com/api/v2/18b44cbd-fa95-e03a-27c6-1fdc02395e63/tracks?fields=id,title&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -420,7 +424,7 @@ Description | Endpoint
 > *Find tracks by Eminem that feature Rihanna as a guest vocalist...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&featuring_artist=rihanna&limit=1&fields=id,title,artist_name,album_title&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
+$ curl "http://api.v2.musicgraph.com/api/v2/track/search?artist_name=eminem&featuring_artist=rihanna&limit=1&fields=id,title,artist_name,album_title&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -448,7 +452,7 @@ HTTP/1.1 200 OK
 > *Find tracks written by Eminem about his daughter, Hailie...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/track/search?artist_name=eminem&lyrics_phrase=hailie&limit=5&fields=title&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
+$ curl "http://api.v2.musicgraph.com/api/v2/track/search?artist_name=eminem&lyrics_phrase=hailie&limit=5&fields=title&api_key=c26e63de67a52b71cfcb1b2fb63a14f2"
 ```
 
 ```http
@@ -531,7 +535,7 @@ Description | Endpoint
 > *Search for a playlist with Pearl Jam as the seed artist...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&fields=id,title,artist_name&limit=3&api_key=c8e73991124fd6b5e8a62c4f7160496d"
+$ curl "http://api.v2.musicgraph.com/api/v2/playlist?artist_id=e2ffceb5-a6b5-11e0-b446-00251188dd67&fields=id,title,artist_name&limit=3&api_key=c8e73991124fd6b5e8a62c4f7160496d"
 ```
 
 ```http
@@ -593,7 +597,7 @@ For more details please check out our plans and get your free API key today.
 > *Search for metrics using Pearl Jam as the artist...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&api_key=fcffa99e795c2f3996c843fd8069ee36"
+$ curl "http://api.v2.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&api_key=fcffa99e795c2f3996c843fd8069ee36"
 ```
 
 ```http
@@ -700,7 +704,7 @@ HTTP/1.1 200 OK
 > *If you want to only view a specific data sources data, then pass the source name in the URL as shown below...*
 
 ```shell
-$ curl "http://api.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=fcffa99e795c2f3996c843fd8069ee36"
+$ curl "http://api.v2.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=fcffa99e795c2f3996c843fd8069ee36"
 ```
 
 ```http
@@ -759,69 +763,101 @@ Description | Endpoint
 **artist-metrics-vevo** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=fcffa99e795c2f3996c843fd8069ee36`
 **artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=fcffa99e795c2f3996c843fd8069ee36`
 
-# Dictionary
+# Type Dictionary
 
-## Countries
+## Country Codes
 
-Use standard 2-letter country codes as [described here](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+Use standard 2-letter [ISO 3166-1 country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2):
 
-## Decades
+Value | Description
+-----|------------
+**AR** | Argentina
+**AU** | Australia
+**BR** | Brazil
+**BS** | Bahamas
+**CA** | Canada
+**CH** | Switzerland
+**CL** | Chile
+**CN** | China
+**CO** | Colombia
+**DE** | Germany
+**EG** | Egypt
+**ES** | Spain
+**FR** | France
+**GB** | United Kingdom
+**GR** | Greece
+**IE** | Ireland
+**IL** | Israel
+**IR** | Iran
+**IT** | Italy
+**JP** | Japan
+**MX** | Mexico
+**NL** | Netherlands
+**RO** | Romania
+**RU** | Russia
+**US** | United States
 
-- 1890s
-- 1900s
-- 1910s
-- 1920s
-- 1930s
-- 1940s
-- 1950s
-- 1960s
-- 1970s
-- 1980s
-- 1990s
-- 2000s
-- 2010s
+## Decade Values
 
-## Gender
+Any of the following strings:
 
-**Male** or **Female**
+<table>
+<tr><th>Value</th></tr>
+<tr><td>1890s</td></tr>
+<tr><td>1900s</td></tr>
+<tr><td>1910s</td></tr>
+<tr><td>1920s</td></tr>
+<tr><td>1930s</td></tr>
+<tr><td>1940s</td></tr>
+<tr><td>1950s</td></tr>
+<tr><td>1960s</td></tr>
+<tr><td>1970s</td></tr>
+<tr><td>1980s</td></tr>
+<tr><td>1990s</td></tr>
+<tr><td>2000s</td></tr>
+<tr><td>2010s</td></tr>
+</table>
 
-## Genres
+## Language Options
 
-- Avant-Garde
-- Blues
-- Children's
-- Classical
-- Comedy/Spoken
-- Country
-- Easy Listening
-- Electronic
-- Folk
-- Holiday
-- International
-- Jazz
-- Latin
-- New Age
-- Pop/Rock
-- R&B
-- Rap
-- Reggae
-- Religious
-- Stage & Screen
-- Vocal
+Value | Description
+------|------------
+**DE** | German
+**EN** | English
+**ES** | Spanish
+**FR** | French
+**IT** | Italian
+**NL** | Dutch
+**PT** | Portuguese
+**RU** | Russian
+**SV** | Swedish
 
-## Languages
+## Musical Genres
 
-Abbreviation | Description
--------------|------------
-de | German
-en | English
-es | Spanish
-fr | French
-it | Italian
-nl | Dutch
-pt | Portuguese
-ru | Russian
-sv | Swedish
+<table>
+<tr><th>Value</th></tr>
+<tr><td>Avant-Garde</td></tr>
+<tr><td>Blues</td></tr>
+<tr><td>Children's</td></tr>
+<tr><td>Classical</td></tr>
+<tr><td>Comedy/Spoken</td></tr>
+<tr><td>Country</td></tr>
+<tr><td>Easy Listening</td></tr>
+<tr><td>Electronic</td></tr>
+<tr><td>Folk</td></tr>
+<tr><td>Holiday</td></tr>
+<tr><td>International</td></tr>
+<tr><td>Jazz</td></tr>
+<tr><td>Latin</td></tr>
+<tr><td>New Age</td></tr>
+<tr><td>Pop/Rock</td></tr>
+<tr><td>R&B</td></tr>
+<tr><td>Rap</td></tr>
+<tr><td>Reggae</td></tr>
+<tr><td>Religious</td></tr>
+<tr><td>Stage & Screen</td></tr>
+<tr><td>Vocal</td></tr>
+</table>
 
 # Terms And Conditions
 
