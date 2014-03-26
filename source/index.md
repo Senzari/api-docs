@@ -7,7 +7,13 @@ toc_footers:
 
 # Introduction
 
-Welcome to the MusicGraph API documentation! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph database, which you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.
+Welcome to the MusicGraph API documentation!
+
+You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph database, which you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.
+
+All URLs pertaining to the MusicGraph API share a common base:
+
+**`http://api.v2.musicgraph.com`**
 
 ## Authentication
 
@@ -165,6 +171,8 @@ Code | Message
 
 ## Versioning
 
+The current version of the MusicGraph API (v2) was released on 2014-03-26. We release new versions of the API whenever backwards-incompatible changes are made.
+
 ## Terms And Conditions
 
 We need to protect users, content providers, our software and service while at the same time enabling you to create applications. We therefore require you to comply with the following terms.
@@ -181,7 +189,7 @@ The Graph Search API allows you to dramatically expand your music service’s se
 
 With Graph Search, a user can easily traverse our ever-expanding graph ontology that includes hundreds of millions of entities (vertices) and connections (edges), as well as seven billion properties, making it one of the richest collection of music knowledge in the world.
 
-It is analogous to Facebook’s Graph Search, but instead of responding higher-level questions about a given user’s social graph, like in “Photos of and friends or coworkers and your current city”, Graph Search allows for deep queries within the music realm, as in for example “Artists similar to Rihanna, that are female and that have more than 100k followers in Twitter”.
+It is analogous to Facebook's Graph Search, but instead of responding higher-level questions about a given user’s social graph, like in "Photos of and friends or coworkers and your current city", Graph Search allows for deep queries within the music realm, as in for example "Artists similar to Rihanna, that are female and that have more than 100k followers in Twitter."
 
 Try Graph Search today and let your users discover artists, albums and songs in the most powerful way possible.
 
@@ -255,24 +263,23 @@ HTTP/1.1 200 OK
 }
 ```
 
-### Artist Metadata Endpoints
+The base URL path for artist queries is:
 
-Method | Endpoint | Description
--------|----------|------------
-`GET` | `/<id>` | Retrieve metadata for an artist with an artist id
-`GET` | `/<id>/albums` | List albums by this with the `/albums` connection
-`GET` | `/<id>/tracks` | List tracks by this artist with the `/tracks` connection
+**`http://api.v2.musicgraph.com/api/v2/artist/search`**
 
-### Artist Search Endpoint
+### Artist Endpoints
 
-Method | Endpoint | Description
--------|----------|------------
-`GET` | `/artist/search` | Execute any number of search operations (described below)
+Resource URL | Description
+-------------|------------
+`/api/v2/[id]` | Return an artist's metadata
+`/api/v2/[id]/albums` | Return an artist's albums
+`/api/v2/[id]/tracks` | Return an artist's tracks
+`/api/v2/artist/search` | Execute a search operations (described below)
 
 ### Artist Search Operations
 
 Parameter | Description
------|------------
+----------|------------
 **name** | Return artists who match the name
 **similar_to** | Return artists that are similar to the given name
 **produced_by** | Return artists who worked with a given producer
@@ -283,13 +290,13 @@ Parameter | Description
 
 Parameter | Description
 -----|------------
-**decade** | Return artists who were active during a given decade; [possible values]()
-**gender** | Return artists filtered by gender; [possible values]()
-**genre** | Return artists filtered by genre; [possible values]()
+**decade** | Return artists who were active during a given decade; see [possible values](#decade-values)
+**gender** | Return artists filtered by gender; possible values are "Male" and "Female"
+**genre** | Return artists filtered by genre; see [possible values](#musical-genres)
 **influenced** | Return artists who influenced a given artist
 **influenced_by** | Return artists who were influenced by a given artist
 
-### Example Artist Endpoint
+### Example Artist Endpoints
 
 Description | Endpoint
 ------------|---------
@@ -393,23 +400,22 @@ HTTP/1.1 200 OK
 }
 ```
 
-### Album Metadata Endpoints
+The base URL path for album queries is:
 
-Method | Endpoint | Description
--------|----------|------------
-`GET` | `/<id>` | Return metadata for an album by id
-`GET` | `/<id>/tracks` | List this album's tracks with the `/tracks` connection
+**`http://api.v2.musicgraph.com/api/v2/album`**
 
-### Album Search Endpoint
+### Album Endpoints
 
-Method | Endpoint | Description
--------|----------|------------
-`GET` | `/album/search` | Execute any number of search operations (described below)
+Resource URL | Description
+-------------|------------
+`/api/v2/[id]` | Return metadata for an album by id
+`/api/v2/[id]/tracks` | Return the tracks that appear on an album
+`/api/v2/album/search` | Execute a search operation (described below)
 
 ### Album Search Operations
 
 Parameter | Description
------|------------
+----------|------------
 **name** | Find albums by name
 **artist_name** | Find albums by an artist
 **produced_by** | Find albums that were produced by a producer
@@ -418,11 +424,11 @@ Parameter | Description
 ### Album Search Filters
 
 Parameter | Description
------|------------
+----------|------------
 **country** | Filter album search results by country
-**decade** | Filter album search results by release date; [possible values]()
-**genre** | Filter album search results by genre; [possible values]()
-**genre** | Filter album search results by artist gender; [possible values]()
+**decade** | Filter album search results by release date; see [possible values](#decade-values)
+**gender** | Filter album search results by artist gender; possible values are "Male" and "Female"
+**genre** | Filter album search results by genre; see [possible values](#musical-genres)
 **top_rated** | Return only top-rated albums; possible values are **true** and **false**
 
 ### Example Album Endpoints
@@ -509,22 +515,21 @@ HTTP/1.1 200 OK
 }
 ```
 
-### Track Metadata Endpoint
+The base URL path for track queries is:
 
-Method | Endpoint | Description
--------|----------|------------
-`GET` | `/<id>` | Return metadata for a track by id
+**`http://api.v2.musicgraph.com/api/v2/track`**
 
-### Track Search Endpoint
+### Track Endpoints
 
-Method | Endpoint | Description
--------|----------|------------
-`GET` | `/track/search` | Execute any number of search operations (described below)
+Resource URL | Description
+-------------|------------
+`/api/v2/track/[id]` | Return a track's metadata
+`/api/v2/track/search` | Execute a search operation (described below)
 
 ### Track Search Operations
 
 Parameter | Description
------|------------
+----------|------------
 **name** | Find tracks by name
 **artist_name** | Find tracks by an artist
 **composed_by** | Find tracks that were composed by an artist
@@ -533,11 +538,11 @@ Parameter | Description
 ### Track Search Filters
 
 Parameter | Description
------|------------
-**decade** | Filter track search results by release date; [possible values]()
-**genre** | Filter track search results by genre; [possible values]()
+----------|------------
+**decade** | Filter track search results by release date; see [possible values](#decade-values)
+**genre** | Filter track search results by genre; see [possible values](#musical-genres)
 **lyrics_keywords** | Filter track search results by lyric keywords
-**lyrics_lang** | Filter track search results by language
+**lyrics_lang** | Filter track search results by language; see [possible values](#language-codes)
 **lyrics_phrase** | Filter track search results that contain an exact match
 
 ### Example Endpoints
@@ -592,19 +597,21 @@ HTTP/1.1 200 OK
 }
 ```
 
-The Playlisting API allows you to create powerful DMCA-compliant music recommendations based on hundreds of thousands of potential "seed artists."
+The Playlist API allows you to create powerful DMCA-compliant music recommendations based on hundreds of thousands of potential "seed artists."
 
 One importantly differentiator in the way we generate our recommendations is that we use very powerful "graph algorithms" to select the best songs in a real-time for each user, which can take into account a large number of variables, such as musical similarities, personal taste, social relationships, market metrics, user context, etc.
 
 These "graph recommendation" approach not only results in much more personalized selections, but also in a more transparent experience for the end-user, as each recommendation comes with “evidence” that clearly explains why each song was selected. We can achieve this by "walking the graph" and taking note of each step taken in the decision process. What is even cooler is that depending on the user feedback, we can modify the "walk", so that for example we can skip the "social nodes" in the event that the user hates his or her friends' taste in music.
 
-Right now we only have our "Basic Playlist Generator" enabled, but we will add a ton of new features in the coming weeks that will allow you to fully leverage the full power of MusicGraph's deep music knowledge.
+The base URL path for playlist queries is:
+
+**`http://api.v2.musicgraph.com/api/v2/playlist`**
 
 ### Playlist Endpoint
 
-Method | Endpoint | Description
--------|----------|------------
-`GET` | `/playlist` | Recommend a personalized playlist
+Resource URL | Description
+-------------|------------
+`/api/v2/playlist` | Recommend a personalized playlist
 
 ### Playlist Parameters
 
@@ -620,14 +627,14 @@ Description | Endpoint
 
 # Music Data API
 
-Interested in mining the data yourself or building an app that requires deeper insight into some of the data we’ve generated? The Music Data plan provides detailed data about:
+The Music Data API provides detailed data about:
 
 - **Artists' social media trends** - Followers, song plays and video views across leading sources such as Twitter, Facebook, LastFM and Vevo.
 - **Lyrical features** - for licensing reasons, rather than returning the full lyrics in a song, we extract and return the top 15 most "significant" words per song, hopefully giving you a general idea of what the song is about. A language code is also included in the results.
 
 For more details please [check out our plans](https://developer.musicgraph.com/#plans) and get your free API key today.
 
-## Artist Metrics
+## Artist Metrics Data
 
 > *Search for metrics using Pearl Jam as the artist...*
 
@@ -786,15 +793,19 @@ HTTP/1.1 200 OK
 }
 ```
 
+The base URL path for artist metrics queries is:
+
+**`http://api.v2.musicgraph.com/api/v2/artist/[id]/metrics`**
+
 ### Artist Metrics Endpoints
 
-Method | Endpoint | Description
--------|----------|------------
-`GET` | `/artist/<id>/metrics` | Retrieve all metrics for the specified artist id
-`GET` | `/artist/<id>/metrics/facebook` | Retrieve Facebook metrics
-`GET` | `/artist/<id>/metrics/lastfm` | Retrieve Last FM metrics
-`GET` | `/artist/<id>/metrics/twitter` | Retrieve Twitter metrics
-`GET` | `/artist/<id>/metrics/vevo` | Retrieve Vevo metrics
+Resource URL | Description
+-------------|------------
+`/api/v2/artist/[id]/metrics` | Retrieve all available metrics data
+`/api/v2/artist/[id]/metrics/facebook` | Retrieve Facebook metrics data
+`/api/v2/artist/[id]/metrics/lastfm` | Retrieve Last FM metrics data
+`/api/v2/artist/[id]/metrics/twitter` | Retrieve Twitter metrics data
+`/api/v2/artist/[id]/metrics/vevo` | Retrieve Vevo metrics data
 
 ### Example Endpoints
 
@@ -857,11 +868,15 @@ HTTP/1.1 200 OK
 }
 ```
 
+The base URL path for track lyrical features is:
+
+**`http://api.v2.musicgraph.com/api/v2/track/[id]/lyrical_features`**
+
 ### Track Lyrical Features Endpoints
 
-Method | Endpoint | Description
--------|----------|------------
-`GET` | `/track/<id>/lyrical_features` | Retrieve lyrical features for the specified track id
+Resource URL | Description
+-------------|------------
+`/api/v2/track/[id]/lyrical_features` | Retrieve lyrical features for a track
 
 # Type Dictionary
 
