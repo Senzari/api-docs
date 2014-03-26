@@ -2,12 +2,14 @@
 title: MusicGraph API Reference
 
 toc_footers:
- - <center><a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key<br />No Credit Card Required</a></center>
+ - <center><a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key</a></center>
 ---
 
-# Overview
+# Introduction
 
 Welcome to the MusicGraph API documentation! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph database, which you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.
+
+## Authentication
 
 All requests made to the MusicGraph API must be signed with an API key. The API key used in this document is for demonstration purposes only. It should not be used for any other application as it is rate limited and restricted by IP. You can [sign up for a free account here](https://developer.musicgraph.com/#plans "Sign Up for a Developer Key").
 
@@ -44,11 +46,11 @@ HTTP/1.1 200 OK
 }
 ```
 
-The MusicGraph API is strongly typed. In addition to having a type, each resource also has a unique ID. In the example to the right we are limiting the JSON response to include only the id field for the artist object.
+The API is implemented directly over HTTP. In general, HTTP GET methods are used for read-only operations while HTTP POST are reserved for requests that potentially modify state on the server.
 
-<aside class="notice">
-Try sending the example request without the `fields` paramter, see what happens!
-</aside>
+Most queries support cursor-based pagination. The `offset` parameter offsets the start of each page by the number specified. The `limit` parameter limits the number of objects to be returned. The maximum allowable count is 100.
+
+In the example to the right we are limiting the JSON response to include only the id field for the artist object. By default, all fields are returned when you make an API request. You can select what fields you want returned with the `fields` parameter. Try sending the example request without the `fields` paramter, see what happens!
 
 ### Optional Parameters
 
@@ -57,8 +59,6 @@ Name | Description
 **fields** | Limit the set of returned properties; comma-separated
 **limit** | Limit the number of results; max is 100, default is 15
 **offset** | Paginate the results set
-
-You can use the `offset` and `limit` parameters to page through query results.
 
 ## Error Handling
 
@@ -122,11 +122,20 @@ HTTP/1.1 400 Bad Request
 }
 ```
 
-The response you receive will vary based on the node or edge that you are reading, but it will take the following general form:
+The response you receive will vary based on the resource you are retrieving, but it will generally take the following form:
 
-The MusicGraph API uses standard HTTP/1.1 response codes as described in [RFC 2616](http://tools.ietf.org/html/rfc2616 "The HTTP/1.1 Standard") to indicate the success or failure of an API request. Codes in the 2xx range indicate success, codes in the 4xx and 5xx ranges indicate an error; for example, an invalid id, missing api key, or type exception.
+    {
+      "status":{
+        "api":"v2",
+        "code":0,
+        "message":"Success"
+      },
+      "data":[...]
+    }
 
 ### HTTP Response Codes
+
+The MusicGraph API uses standard HTTP/1.1 response codes as described in [RFC 2616](http://tools.ietf.org/html/rfc2616 "The HTTP/1.1 Standard") to indicate the success or failure of an API request. Codes in the 2xx range indicate success, codes in the 4xx and 5xx ranges indicate an error; for example, an invalid id, missing api key, or type exception.
 
 Code | Message
 -----|--------
@@ -137,7 +146,9 @@ Code | Message
 `429` | Too Many Requests - You have exceeded the rate limit associated with your API key
 `500` | Internal Server Error - Please [email us](mailto:) to report a service outage
 
-### JSON Status Codes
+### Response Status Codes
+
+The API uses an internal code to signal the status of an API request. Internal status codes are packaged in the JSON data of an API response. A status code of 0 indicates success. Any number besides zero indicates an error of some kind. Negative numbers are reserved for egregious errors.
 
 Code | Message
 -----|--------
@@ -151,6 +162,18 @@ Code | Message
 `6` | Invalid Connection Name
 `7` | Invalid MusicGraph ID
 `8` | Invalid Type
+
+## Versioning
+
+## Terms And Conditions
+
+We need to protect users, content providers, our software and service while at the same time enabling you to create applications. We therefore require you to comply with the following terms.
+
+1. Do not use the MusicGraph API or its feeds in connection with anything that promotes or takes part in any products, services, or materials that Senzari might consider malicious, hateful, or illegal.
+
+2. You may not sell, lease, share, transfer, or sublicense access to the MusicGraph API or its feeds to any party other than the API key holder.
+
+Please read our [Terms Of Service](https://developer.musicgraph.com/policies "Terms Of Service") before you start developing anything using the MusicGraph API.
 
 # Graph Search API
 
@@ -571,11 +594,23 @@ HTTP/1.1 200 OK
 
 The Playlisting API allows you to create powerful DMCA-compliant music recommendations based on hundreds of thousands of potential "seed artists."
 
-One importantly differentiator in the way we generate our recommendations is that we use very powerful “graph algorithms” to select the best songs in a real-time for each user, which can take into account a large number of variables, such as musical similarities, personal taste, social relationships, market metrics, user context, etc.
+One importantly differentiator in the way we generate our recommendations is that we use very powerful "graph algorithms" to select the best songs in a real-time for each user, which can take into account a large number of variables, such as musical similarities, personal taste, social relationships, market metrics, user context, etc.
 
-These “graph recommendation” approach not only results in much more personalized selections, but also in a more transparent experience for the end-user, as each recommendation comes with “evidence” that clearly explains why each song was selected. We can achieve this by “walking the graph” and taking note of each step taken in the decision process. What is even cooler is that depending on the user feedback, we can modify the “walk”, so that for example we can skip the “social nodes” in the event that the user hates his or her friends’ taste in music.
+These "graph recommendation" approach not only results in much more personalized selections, but also in a more transparent experience for the end-user, as each recommendation comes with “evidence” that clearly explains why each song was selected. We can achieve this by "walking the graph" and taking note of each step taken in the decision process. What is even cooler is that depending on the user feedback, we can modify the "walk", so that for example we can skip the "social nodes" in the event that the user hates his or her friends' taste in music.
 
-Right now we only have our “Basic Playlist Generator” enabled, but we will add a ton of new features in the coming weeks that will allow you to fully leverage the full power of MusicGraph’s deep music knowledge.
+Right now we only have our "Basic Playlist Generator" enabled, but we will add a ton of new features in the coming weeks that will allow you to fully leverage the full power of MusicGraph's deep music knowledge.
+
+### Playlist Endpoint
+
+Method | Endpoint | Description
+-------|----------|------------
+`GET` | `/playlist` | Recommend a personalized playlist
+
+### Playlist Parameters
+
+Parameter | Description
+----------|------------
+**artist_id** | Generate a playlist with a seed artist
 
 ### Example Endpoints
 
@@ -587,10 +622,10 @@ Description | Endpoint
 
 Interested in mining the data yourself or building an app that requires deeper insight into some of the data we’ve generated? The Music Data plan provides detailed data about:
 
-- Artists’ social media trends: Followers, song plays and video views across leading sources such as Twitter, Facebook, LastFM and Vevo.
-- Lyrical features: for licensing reasons, rather than returning the full lyrics in a song, we extract and return the top 15 most “significant” words per song, hopefully giving you a general idea of what the song is about. A language code is also included in the results.
+- **Artists' social media trends** - Followers, song plays and video views across leading sources such as Twitter, Facebook, LastFM and Vevo.
+- **Lyrical features** - for licensing reasons, rather than returning the full lyrics in a song, we extract and return the top 15 most "significant" words per song, hopefully giving you a general idea of what the song is about. A language code is also included in the results.
 
-For more details please check out our plans and get your free API key today.
+For more details please [check out our plans](https://developer.musicgraph.com/#plans) and get your free API key today.
 
 ## Artist Metrics
 
@@ -650,7 +685,7 @@ HTTP/1.1 200 OK
             "value":117438534
           }
         },
-        "url":null
+        "url":"http://www.last.fm/music/Pearl+Jam"
       },
       "name":"Pearl Jam",
       "facebook":{
@@ -751,25 +786,88 @@ HTTP/1.1 200 OK
 }
 ```
 
-## Lyrical Features
+### Artist Metrics Endpoints
+
+Method | Endpoint | Description
+-------|----------|------------
+`GET` | `/artist/<id>/metrics` | Retrieve all metrics for the specified artist id
+`GET` | `/artist/<id>/metrics/facebook` | Retrieve Facebook metrics
+`GET` | `/artist/<id>/metrics/lastfm` | Retrieve Last FM metrics
+`GET` | `/artist/<id>/metrics/twitter` | Retrieve Twitter metrics
+`GET` | `/artist/<id>/metrics/vevo` | Retrieve Vevo metrics
 
 ### Example Endpoints
 
 Description | Endpoint
 ------------|---------
 **artist-metrics** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=fcffa99e795c2f3996c843fd8069ee36`
-**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=fcffa99e795c2f3996c843fd8069ee36`
+**artist-metrics-facebook** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=fcffa99e795c2f3996c843fd8069ee36`
+**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=fcffa99e795c2f3996c843fd8069ee36`
 **artist-metrics-twitter** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=fcffa99e795c2f3996c843fd8069ee36`
 **artist-metrics-vevo** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=fcffa99e795c2f3996c843fd8069ee36`
-**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=fcffa99e795c2f3996c843fd8069ee36`
+
+## Track Lyrical Features
+
+> *Retrieve lyrical features for Adele's "Right As Rain"...*
+
+```shell
+$ curl "http://api.v2.musicgraph.com/api/v2/eaaf2cb4-c9d3-4715-0663-861709eff48d/lyrical_features?api_key=fcffa99e795c2f3996c843fd8069ee36"
+```
+
+```http
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "status":{
+    "api":"v2",
+    "code":0,
+    "message":"Success"
+  },
+  "total":1,
+  "count":1,
+  "data":[
+    {
+      "id":"eaaf2cb4-c9d3-4715-0663-861709eff48d",
+      "title":"Right as Rain",
+      "album":"Live at the Royal Albert Hall",
+      "language":"en",
+      "bow":[
+        "concerned",
+        "as",
+        "wipe",
+        "excitement",
+        "off",
+        "cried",
+        "dirty",
+        "rain",
+        "wants",
+        "tired",
+        "chose",
+        "far",
+        "pay",
+        "when",
+        "bed"
+      ],
+      "artist":"Adele"
+    }
+  ],
+  "offset":1
+}
+```
+
+### Track Lyrical Features Endpoints
+
+Method | Endpoint | Description
+-------|----------|------------
+`GET` | `/track/<id>/lyrical_features` | Retrieve lyrical features for the specified track id
 
 # Type Dictionary
 
 ## Country Codes
 
-Use standard 2-letter [ISO 3166-1 country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2):
-
-Value | Description
+Code | Description
 -----|------------
 **AR** | Argentina
 **AU** | Australia
@@ -797,9 +895,9 @@ Value | Description
 **RU** | Russia
 **US** | United States
 
-## Decade Values
+<aside class="notice">The API uses standard 2-letter [ISO 3166-1 country codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).</aside>
 
-Any of the following strings:
+## Decade Values
 
 <table>
 <tr><th>Value</th></tr>
@@ -818,9 +916,9 @@ Any of the following strings:
 <tr><td>2010s</td></tr>
 </table>
 
-## Language Options
+## Language Codes
 
-Value | Description
+Code | Description
 ------|------------
 **DE** | German
 **EN** | English
@@ -858,13 +956,3 @@ Value | Description
 <tr><td>Stage & Screen</td></tr>
 <tr><td>Vocal</td></tr>
 </table>
-
-# Terms And Conditions
-
-We need to protect users, content providers, our software and service while at the same time enabling you to create applications. We therefore require you to comply with the following terms.
-
-1. Do not use the MusicGraph API or its feeds in connection with anything that promotes or takes part in any products, services, or materials that Senzari might consider malicious, hateful, or illegal.
-
-2. You may not sell, lease, share, transfer, or sublicense access to the MusicGraph API or its feeds to any party other than the API key holder.
-
-Please read our [Terms Of Service](https://developer.musicgraph.com/policies "Terms Of Service") before you start developing anything using the MusicGraph API.
