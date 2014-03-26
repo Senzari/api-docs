@@ -11,7 +11,7 @@ Welcome to the MusicGraph API documentation!
 
 You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph database, which you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.
 
-All URLs pertaining to the MusicGraph API share a common base:
+All URLs pertaining to the MusicGraph API share a common base path:
 
 **`http://api.v2.musicgraph.com`**
 
@@ -296,27 +296,27 @@ Parameter | Description
 **influenced** | Return artists who influenced a given artist
 **influenced_by** | Return artists who were influenced by a given artist
 
-### Example Artist Endpoints
+### Examples
 
 Description | Link To Example
 ------------|-----
-**Artist Metadata** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Edges** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/edges](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/edges?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Albums** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Tracks** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Similars** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/similar](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/similar?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist URLs** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/social-urls](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/social-urls?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Limit Fields** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Search: Name** | [/api/v2/artist/search?name=madonna](http://api.v2.musicgraph.com/api/v2/artist/search?name=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Search: Similar To** | [/api/v2/artist/search?similar_to=madonna](http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Search: Produced By** | [/api/v2/artist/search?produced_by=madonna](http://api.v2.musicgraph.com/api/v2/artist/search?produced_by=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Search: Influenced** | [/api/v2/artist/search?influenced=madonna](http://api.v2.musicgraph.com/api/v2/artist/search?influenced=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Search: Influenced By** | [/api/v2/artist/search?influenced_by=madonna](http://api.v2.musicgraph.com/api/v2/artist/search?influenced_by=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Filter: Decade** | [/api/v2/artist/search?similar_to=madonna&decade=1990s](http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&decade=1990s&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Filter: Genre** | [/api/v2/artist/search?similar_to=madonna&genre=Rap](http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&genre=Rap&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Artist Filter: Gender** | [/api/v2/artist/search?similar_to=madonna&gender=male](http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&gender=male&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Nested Search: Artist Albums** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id)](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id)&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
-**Nested Search: Artist Tracks** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id),tracks.limit(100).fields(title)](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id),tracks.limit(100).fields(title)&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Metadata** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67</a>
+**Artist Edges** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/edges?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/edges</a>
+**Artist Albums** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums</a>
+**Artist Tracks** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks</a>
+**Artist Similars** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/similar?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/similar</a>
+**Artist URLs** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/social-urls?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/social-urls</a>
+**Limit Fields** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name
+**Artist Search: Name** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?name=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?name=madonna</a>
+**Artist Search: Similar To** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?similar_to=madonna</a>
+**Artist Search: Produced By** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?produced_by=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?produced_by=madonna</a>
+**Artist Search: Influenced** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?influenced=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?influenced=madonna</a>
+**Artist Search: Influenced By** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?influenced_by=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?influenced_by=madonna</a>
+**Artist Filter: Decade** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&decade=1990s&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?similar_to=madonna&decade=1990s</a>
+**Artist Filter: Genre** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&genre=Rap&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?similar_to=madonna&genre=Rap</a>
+**Artist Filter: Gender** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&gender=male&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?similar_to=madonna&gender=male</a>
+**Nested Search: Artist Albums** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id)&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id)</a>
+**Nested Search: Artist Tracks** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id),tracks.limit(100).fields(title)&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id),tracks.limit(100).fields(title)</a>
 
 ## Albums
 
@@ -432,22 +432,23 @@ Parameter | Description
 **genre** | Filter album search results by genre; see [possible values](#musical-genres)
 **top_rated** | Return only top-rated albums; possible values are **true** and **false**
 
-### Example Album Endpoints
+### Examples
 
 Description | Endpoint
 ------------|---------
-**album-meta** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**album-tracks** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**album-by-title** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=Houses+Of+The+Holy`
-**album-by-artist** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&artist_name=John+Lennon`
-**album-similar-to** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&produced_by=Rick+Rubin`
-**album-similar-to** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller`
-**album-availops-similar-to** | `/api/v2/album/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller`
-**album-similar-country** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=21&country=UK`
-**album-similar-decade** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=21&decade=1990s`
-**album-similar-genre** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=21&genre=Rap`
-**album-similar-top-rated** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller&top_rated=true`
-**album-availops-similar-top-rated** | `/api/v2/album/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller&top_rated=true`
+**Album Metadata** | <a href="http://api.v2.musicgraph.com/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02
+**Album Tracks** | <a href="http://api.v2.musicgraph.com/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks
+**Album Edges** | <a href="http://api.v2.musicgraph.com/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/edges?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/edges
+**Album Search: Album Title** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?title=Houses+Of+The+Holy&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?title=Houses+Of+The+Holy
+**Album Search: Artist Name** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?artist_name=John+Lennon&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?artist_name=John+Lennon
+**Album Search: Produced By** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?produced_by=Rick+Rubin&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?produced_by=Rick+Rubin
+**Album Search: Similar To** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?similar_to=Thriller&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?similar_to=Thriller
+**Album Filter: Country** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?similar_to=21&country=UK&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?similar_to=21&country=UK
+**Album Filter: Decade** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?similar_to=21&decade=1990s&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?similar_to=21&decade=1990s
+**Album Filter: Genre** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?similar_to=21&genre=Rap&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?similar_to=21&genre=Rap
+**Album Filter: Top Rated** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?similar_to=Thriller&top_rated=true&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?similar_to=Thriller&top_rated=true
+**Nested Search: Album Tracks** | <a href="http://api.v2.musicgraph.com/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?fields=id,title,tracks.limit(100).fields(id,title,track_artist_id)&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?fields=id,title,tracks.limit(100).fields(id,title,track_artist_id)
+
 
 ## Tracks
 
