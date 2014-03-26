@@ -298,24 +298,25 @@ Parameter | Description
 
 ### Example Artist Endpoints
 
-Description | Endpoint
-------------|---------
-**artist-metadata** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**artist-albums** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**artist-tracks** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**artist-search-by-name** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=madonna`
-**artist-similar-to** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna`
-**artist-produced-by** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&produced_by=madonna`
-**artist-influenced** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&influenced=madonna`
-**artist-influenced-by** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&influenced_by=madonna`
-**artist-availops-influenced-by** | `/api/v2/artist/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&influenced_by=madonna`
-**artist-filter-by-decade** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&decade=1990s`
-**artist-filter-by-genre** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&genre=Rap`
-**artist-filter-by-gender** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&gender=male`
-**artist-availops-filter-by-gender** | `/api/v2/artist/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&gender=male`
-**artist-search-by-name-similar** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=madonna&similar_to=bob dylan`
-**artist-produced-influenced-by** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=u2&influenced=Coldplay`
-**artist-suggest** | `/api/v2/artist/suggest?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&prefix=madon`
+Description | Link To Example
+------------|-----
+**Artist Metadata** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Edges** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/edges](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/edges?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Albums** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Tracks** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Similars** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/similar](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/similar?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist URLs** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/social-urls](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/social-urls?api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Limit Fields** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Search: Name** | [/api/v2/artist/search?name=madonna](http://api.v2.musicgraph.com/api/v2/artist/search?name=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Search: Similar To** | [/api/v2/artist/search?similar_to=madonna](http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Search: Produced By** | [/api/v2/artist/search?produced_by=madonna](http://api.v2.musicgraph.com/api/v2/artist/search?produced_by=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Search: Influenced** | [/api/v2/artist/search?influenced=madonna](http://api.v2.musicgraph.com/api/v2/artist/search?influenced=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Search: Influenced By** | [/api/v2/artist/search?influenced_by=madonna](http://api.v2.musicgraph.com/api/v2/artist/search?influenced_by=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Filter: Decade** | [/api/v2/artist/search?similar_to=madonna&decade=1990s](http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&decade=1990s&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Filter: Genre** | [/api/v2/artist/search?similar_to=madonna&genre=Rap](http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&genre=Rap&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Artist Filter: Gender** | [/api/v2/artist/search?similar_to=madonna&gender=male](http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&gender=male&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Nested Search: Artist Albums** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id)](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id)&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
+**Nested Search: Artist Tracks** | [/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id),tracks.limit(100).fields(title)](http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id),tracks.limit(100).fields(title)&api_key=c26e63de67a52b71cfcb1b2fb63a14f2)
 
 ## Albums
 
