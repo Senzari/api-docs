@@ -70,7 +70,7 @@
       
       <ul class="toc-footer">
         
-          <li><center><a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key<br />No Credit Card Required</a></center></li>
+          <li><center><a href='https://developer.musicgraph.com/#plans'>Sign Up for a Developer Key</a></center></li>
         
       </ul>
       
@@ -78,9 +78,11 @@
 
     <div class="page-wrapper">
       <div class="content">
-        <h1 id="overview">Overview</h1>
+        <h1 id="introduction">Introduction</h1>
 
 <p>Welcome to the MusicGraph API documentation! You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph database, which you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.</p>
+
+<h2 id="authentication">Authentication</h2>
 
 <p>All requests made to the MusicGraph API must be signed with an API key. The API key used in this document is for demonstration purposes only. It should not be used for any other application as it is rate limited and restricted by IP. You can <a title="Sign Up for a Developer Key" href="https://developer.musicgraph.com/#plans">sign up for a free account here</a>.</p>
 
@@ -118,11 +120,11 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
-<p>The MusicGraph API is strongly typed. In addition to having a type, each resource also has a unique ID. In the example to the right we are limiting the JSON response to include only the id field for the artist object.</p>
+<p>The API is implemented directly over HTTP. In general, HTTP GET methods are used for read-only operations while HTTP POST are reserved for requests that potentially modify state on the server.</p>
 
-<p><aside class="notice">
-Try sending the example request without the <code class="prettyprint">fields</code> paramter, see what happens!
-</aside></p>
+<p>Most queries support cursor-based pagination. The <code class="prettyprint">offset</code> parameter offsets the start of each page by the number specified. The <code class="prettyprint">limit</code> parameter limits the number of objects to be returned. The maximum allowable count is 100.</p>
+
+<p>In the example to the right we are limiting the JSON response to include only the id field for the artist object. By default, all fields are returned when you make an API request. You can select what fields you want returned with the <code class="prettyprint">fields</code> parameter. Try sending the example request without the <code class="prettyprint">fields</code> paramter, see what happens!</p>
 
 <h3 id="optional-parameters">Optional Parameters</h3>
 
@@ -145,8 +147,6 @@ Try sending the example request without the <code class="prettyprint">fields</co
 <td>Paginate the results set</td>
 </tr>
 </tbody></table>
-
-<p>You can use the <code class="prettyprint">offset</code> and <code class="prettyprint">limit</code> parameters to page through query results.</p>
 
 <h2 id="error-handling">Error Handling</h2>
 
@@ -189,11 +189,20 @@ Try sending the example request without the <code class="prettyprint">fields</co
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
-<p>The response you receive will vary based on the node or edge that you are reading, but it will take the following general form:</p>
+<p>The response you receive will vary based on the resource you are retrieving, but it will generally take the following form:</p>
 
-<p>The MusicGraph API uses standard HTTP/1.1 response codes as described in <a title="The HTTP/1.1 Standard" href="http://tools.ietf.org/html/rfc2616">RFC 2616</a> to indicate the success or failure of an API request. Codes in the 2xx range indicate success, codes in the 4xx and 5xx ranges indicate an error; for example, an invalid id, missing api key, or type exception.</p>
+<p>{
+      &ldquo;status&rdquo;:{
+        &ldquo;api&rdquo;:&ldquo;v2&rdquo;,
+        &ldquo;code&rdquo;:0,
+        &ldquo;message&rdquo;:&ldquo;Success&rdquo;
+      },
+      &ldquo;data&rdquo;:[&hellip;]
+    }</p>
 
 <h3 id="http-response-codes">HTTP Response Codes</h3>
+
+<p>The MusicGraph API uses standard HTTP/1.1 response codes as described in <a title="The HTTP/1.1 Standard" href="http://tools.ietf.org/html/rfc2616">RFC 2616</a> to indicate the success or failure of an API request. Codes in the 2xx range indicate success, codes in the 4xx and 5xx ranges indicate an error; for example, an invalid id, missing api key, or type exception.</p>
 
 <table><thead>
 <tr>
@@ -227,7 +236,9 @@ Try sending the example request without the <code class="prettyprint">fields</co
 </tr>
 </tbody></table>
 
-<h3 id="json-status-codes">JSON Status Codes</h3>
+<h3 id="response-status-codes">Response Status Codes</h3>
+
+<p>The API uses an internal code to signal the status of an API request. Internal status codes are packaged in the JSON data of an API response. A status code of 0 indicates success. Any number besides zero indicates an error of some kind. Negative numbers are reserved for egregious errors.</p>
 
 <table><thead>
 <tr>
@@ -276,6 +287,19 @@ Try sending the example request without the <code class="prettyprint">fields</co
 <td>Invalid Type</td>
 </tr>
 </tbody></table>
+
+<h2 id="versioning">Versioning</h2>
+
+<h2 id="terms-and-conditions">Terms And Conditions</h2>
+
+<p>We need to protect users, content providers, our software and service while at the same time enabling you to create applications. We therefore require you to comply with the following terms.</p>
+
+<ol>
+<li><p>Do not use the MusicGraph API or its feeds in connection with anything that promotes or takes part in any products, services, or materials that Senzari might consider malicious, hateful, or illegal.</p></li>
+<li><p>You may not sell, lease, share, transfer, or sublicense access to the MusicGraph API or its feeds to any party other than the API key holder.</p></li>
+</ol>
+
+<p>Please read our <a title="Terms Of Service" href="https://developer.musicgraph.com/policies">Terms Of Service</a> before you start developing anything using the MusicGraph API.</p>
 
 <h1 id="graph-search-api">Graph Search API</h1>
 
@@ -963,11 +987,41 @@ Try sending the example request without the <code class="prettyprint">fields</co
 </span></pre>
 <p>The Playlisting API allows you to create powerful DMCA-compliant music recommendations based on hundreds of thousands of potential &ldquo;seed artists.&rdquo;</p>
 
-<p>One importantly differentiator in the way we generate our recommendations is that we use very powerful “graph algorithms” to select the best songs in a real-time for each user, which can take into account a large number of variables, such as musical similarities, personal taste, social relationships, market metrics, user context, etc.</p>
+<p>One importantly differentiator in the way we generate our recommendations is that we use very powerful &ldquo;graph algorithms&rdquo; to select the best songs in a real-time for each user, which can take into account a large number of variables, such as musical similarities, personal taste, social relationships, market metrics, user context, etc.</p>
 
-<p>These “graph recommendation” approach not only results in much more personalized selections, but also in a more transparent experience for the end-user, as each recommendation comes with “evidence” that clearly explains why each song was selected. We can achieve this by “walking the graph” and taking note of each step taken in the decision process. What is even cooler is that depending on the user feedback, we can modify the “walk”, so that for example we can skip the “social nodes” in the event that the user hates his or her friends’ taste in music.</p>
+<p>These &ldquo;graph recommendation&rdquo; approach not only results in much more personalized selections, but also in a more transparent experience for the end-user, as each recommendation comes with “evidence” that clearly explains why each song was selected. We can achieve this by &ldquo;walking the graph&rdquo; and taking note of each step taken in the decision process. What is even cooler is that depending on the user feedback, we can modify the &ldquo;walk&rdquo;, so that for example we can skip the &ldquo;social nodes&rdquo; in the event that the user hates his or her friends&#39; taste in music.</p>
 
-<p>Right now we only have our “Basic Playlist Generator” enabled, but we will add a ton of new features in the coming weeks that will allow you to fully leverage the full power of MusicGraph’s deep music knowledge.</p>
+<p>Right now we only have our &ldquo;Basic Playlist Generator&rdquo; enabled, but we will add a ton of new features in the coming weeks that will allow you to fully leverage the full power of MusicGraph&rsquo;s deep music knowledge.</p>
+
+<h3 id="playlist-endpoint">Playlist Endpoint</h3>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/playlist</code></td>
+<td>Recommend a personalized playlist</td>
+</tr>
+</tbody></table>
+
+<h3 id="playlist-parameters">Playlist Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>artist_id</strong></td>
+<td>Generate a playlist with a seed artist</td>
+</tr>
+</tbody></table>
 
 <h3 id="example-endpoints">Example Endpoints</h3>
 
@@ -988,11 +1042,11 @@ Try sending the example request without the <code class="prettyprint">fields</co
 <p>Interested in mining the data yourself or building an app that requires deeper insight into some of the data we’ve generated? The Music Data plan provides detailed data about:</p>
 
 <ul>
-<li>Artists’ social media trends: Followers, song plays and video views across leading sources such as Twitter, Facebook, LastFM and Vevo.</li>
-<li>Lyrical features: for licensing reasons, rather than returning the full lyrics in a song, we extract and return the top 15 most “significant” words per song, hopefully giving you a general idea of what the song is about. A language code is also included in the results.</li>
+<li><strong>Artists&#39; social media trends</strong> - Followers, song plays and video views across leading sources such as Twitter, Facebook, LastFM and Vevo.</li>
+<li><strong>Lyrical features</strong> - for licensing reasons, rather than returning the full lyrics in a song, we extract and return the top 15 most &ldquo;significant&rdquo; words per song, hopefully giving you a general idea of what the song is about. A language code is also included in the results.</li>
 </ul>
 
-<p>For more details please check out our plans and get your free API key today.</p>
+<p>For more details please <a href="https://developer.musicgraph.com/#plans">check out our plans</a> and get your free API key today.</p>
 
 <h2 id="artist-metrics">Artist Metrics</h2>
 
@@ -1046,7 +1100,7 @@ Try sending the example request without the <code class="prettyprint">fields</co
             </span><span class="s2">"value"</span><span class="p">:</span><span class="mi">117438534</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="err">null</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"http://www.last.fm/music/Pearl+Jam"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Pearl Jam"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"facebook"</span><span class="p">:{</span><span class="w">
@@ -1139,7 +1193,41 @@ Try sending the example request without the <code class="prettyprint">fields</co
   </span><span class="s2">"offset"</span><span class="p">:</span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
-<h2 id="lyrical-features">Lyrical Features</h2>
+<h3 id="artist-metrics-endpoints">Artist Metrics Endpoints</h3>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/artist/&lt;id&gt;/metrics</code></td>
+<td>Retrieve all metrics for the specified artist id</td>
+</tr>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/artist/&lt;id&gt;/metrics/facebook</code></td>
+<td>Retrieve Facebook metrics</td>
+</tr>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/artist/&lt;id&gt;/metrics/lastfm</code></td>
+<td>Retrieve Last FM metrics</td>
+</tr>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/artist/&lt;id&gt;/metrics/twitter</code></td>
+<td>Retrieve Twitter metrics</td>
+</tr>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/artist/&lt;id&gt;/metrics/vevo</code></td>
+<td>Retrieve Vevo metrics</td>
+</tr>
+</tbody></table>
 
 <h3 id="example-endpoints">Example Endpoints</h3>
 
@@ -1154,8 +1242,12 @@ Try sending the example request without the <code class="prettyprint">fields</co
 <td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=fcffa99e795c2f3996c843fd8069ee36</code></td>
 </tr>
 <tr>
-<td><strong>artist-metrics-lastfm</strong></td>
+<td><strong>artist-metrics-facebook</strong></td>
 <td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=fcffa99e795c2f3996c843fd8069ee36</code></td>
+</tr>
+<tr>
+<td><strong>artist-metrics-lastfm</strong></td>
+<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=fcffa99e795c2f3996c843fd8069ee36</code></td>
 </tr>
 <tr>
 <td><strong>artist-metrics-twitter</strong></td>
@@ -1165,9 +1257,65 @@ Try sending the example request without the <code class="prettyprint">fields</co
 <td><strong>artist-metrics-vevo</strong></td>
 <td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=fcffa99e795c2f3996c843fd8069ee36</code></td>
 </tr>
+</tbody></table>
+
+<h2 id="track-lyrical-features">Track Lyrical Features</h2>
+
+<blockquote>
+<p><em>Retrieve lyrical features for Adele&rsquo;s &ldquo;Right As Rain&rdquo;&hellip;</em></p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl <span class="s2">"http://api.v2.musicgraph.com/api/v2/eaaf2cb4-c9d3-4715-0663-861709eff48d/lyrical_features?api_key=fcffa99e795c2f3996c843fd8069ee36"</span>
+</pre><pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre><pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"api"</span><span class="p">:</span><span class="s2">"v2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"eaaf2cb4-c9d3-4715-0663-861709eff48d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Right as Rain"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"album"</span><span class="p">:</span><span class="s2">"Live at the Royal Albert Hall"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"language"</span><span class="p">:</span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bow"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"concerned"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"as"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"wipe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"excitement"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"off"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cried"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dirty"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rain"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"wants"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tired"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"chose"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"far"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pay"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"when"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bed"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"artist"</span><span class="p">:</span><span class="s2">"Adele"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"offset"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<h3 id="track-lyrical-features-endpoints">Track Lyrical Features Endpoints</h3>
+
+<table><thead>
 <tr>
-<td><strong>artist-metrics-lastfm</strong></td>
-<td><code class="prettyprint">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=fcffa99e795c2f3996c843fd8069ee36</code></td>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td><code class="prettyprint">/track/&lt;id&gt;/lyrical_features</code></td>
+<td>Retrieve lyrical features for the specified track id</td>
 </tr>
 </tbody></table>
 
@@ -1175,11 +1323,9 @@ Try sending the example request without the <code class="prettyprint">fields</co
 
 <h2 id="country-codes">Country Codes</h2>
 
-<p>Use standard 2-letter <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 country codes</a>:</p>
-
 <table><thead>
 <tr>
-<th>Value</th>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1285,9 +1431,9 @@ Try sending the example request without the <code class="prettyprint">fields</co
 </tr>
 </tbody></table>
 
-<h2 id="decade-values">Decade Values</h2>
+<p><aside class="notice">The API uses standard 2-letter <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 country codes</a>.</aside></p>
 
-<p>Any of the following strings:</p>
+<h2 id="decade-values">Decade Values</h2>
 
 <table>
 <tr><th>Value</th></tr>
@@ -1306,11 +1452,11 @@ Try sending the example request without the <code class="prettyprint">fields</co
 <tr><td>2010s</td></tr>
 </table>
 
-<h2 id="language-options">Language Options</h2>
+<h2 id="language-codes">Language Codes</h2>
 
 <table><thead>
 <tr>
-<th>Value</th>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1378,17 +1524,6 @@ Try sending the example request without the <code class="prettyprint">fields</co
 <tr><td>Stage & Screen</td></tr>
 <tr><td>Vocal</td></tr>
 </table>
-
-<h1 id="terms-and-conditions">Terms And Conditions</h1>
-
-<p>We need to protect users, content providers, our software and service while at the same time enabling you to create applications. We therefore require you to comply with the following terms.</p>
-
-<ol>
-<li><p>Do not use the MusicGraph API or its feeds in connection with anything that promotes or takes part in any products, services, or materials that Senzari might consider malicious, hateful, or illegal.</p></li>
-<li><p>You may not sell, lease, share, transfer, or sublicense access to the MusicGraph API or its feeds to any party other than the API key holder.</p></li>
-</ol>
-
-<p>Please read our <a title="Terms Of Service" href="https://developer.musicgraph.com/policies">Terms Of Service</a> before you start developing anything using the MusicGraph API.</p>
 
       </div>
       <div class="dark-box">
