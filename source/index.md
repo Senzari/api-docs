@@ -11,7 +11,7 @@ Welcome to the MusicGraph API documentation!
 
 You can use the MusicGraph API to search through more than one billion music-related connections. Data is stored in a graph database, which you can query using familiar REST HTTP calls. This document specifies the set of HTTP methods exposed by the MusicGraph API.
 
-All URLs pertaining to the MusicGraph API share a common base:
+All URLs pertaining to the MusicGraph API share a common base path:
 
 **`http://api.v2.musicgraph.com`**
 
@@ -296,26 +296,27 @@ Parameter | Description
 **influenced** | Return artists who influenced a given artist
 **influenced_by** | Return artists who were influenced by a given artist
 
-### Example Artist Endpoints
+### Examples
 
-Description | Endpoint
-------------|---------
-**artist-metadata** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**artist-albums** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**artist-tracks** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**artist-search-by-name** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=madonna`
-**artist-similar-to** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna`
-**artist-produced-by** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&produced_by=madonna`
-**artist-influenced** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&influenced=madonna`
-**artist-influenced-by** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&influenced_by=madonna`
-**artist-availops-influenced-by** | `/api/v2/artist/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&influenced_by=madonna`
-**artist-filter-by-decade** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&decade=1990s`
-**artist-filter-by-genre** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&genre=Rap`
-**artist-filter-by-gender** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&gender=male`
-**artist-availops-filter-by-gender** | `/api/v2/artist/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=madonna&gender=male`
-**artist-search-by-name-similar** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=madonna&similar_to=bob dylan`
-**artist-produced-influenced-by** | `/api/v2/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=u2&influenced=Coldplay`
-**artist-suggest** | `/api/v2/artist/suggest?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&prefix=madon`
+Description | Link To Example
+------------|-----
+**Artist Metadata** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67</a>
+**Artist Edges** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/edges?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/edges</a>
+**Artist Albums** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/albums</a>
+**Artist Tracks** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/tracks</a>
+**Artist Similars** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/similar?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/similar</a>
+**Artist URLs** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/social-urls?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/social-urls</a>
+**Limit Fields** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name
+**Artist Search: Name** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?name=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?name=madonna</a>
+**Artist Search: Similar To** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?similar_to=madonna</a>
+**Artist Search: Produced By** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?produced_by=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?produced_by=madonna</a>
+**Artist Search: Influenced** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?influenced=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?influenced=madonna</a>
+**Artist Search: Influenced By** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?influenced_by=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?influenced_by=madonna</a>
+**Artist Filter: Decade** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&decade=1990s&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?similar_to=madonna&decade=1990s</a>
+**Artist Filter: Genre** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&genre=Rap&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?similar_to=madonna&genre=Rap</a>
+**Artist Filter: Gender** | <a href="http://api.v2.musicgraph.com/api/v2/artist/search?similar_to=madonna&gender=male&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/search?similar_to=madonna&gender=male</a>
+**Nested Search: Artist Albums** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id)&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id)</a>
+**Nested Search: Artist Tracks** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id),tracks.limit(100).fields(title)&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67?fields=id,name,albums.limit(100).fields(id),tracks.limit(100).fields(title)</a>
 
 ## Albums
 
@@ -431,22 +432,23 @@ Parameter | Description
 **genre** | Filter album search results by genre; see [possible values](#musical-genres)
 **top_rated** | Return only top-rated albums; possible values are **true** and **false**
 
-### Example Album Endpoints
+### Examples
 
 Description | Endpoint
 ------------|---------
-**album-meta** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**album-tracks** | `/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**album-by-title** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=Houses+Of+The+Holy`
-**album-by-artist** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&artist_name=John+Lennon`
-**album-similar-to** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&produced_by=Rick+Rubin`
-**album-similar-to** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller`
-**album-availops-similar-to** | `/api/v2/album/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller`
-**album-similar-country** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=21&country=UK`
-**album-similar-decade** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=21&decade=1990s`
-**album-similar-genre** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=21&genre=Rap`
-**album-similar-top-rated** | `/api/v2/album/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller&top_rated=true`
-**album-availops-similar-top-rated** | `/api/v2/album/availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=Thriller&top_rated=true`
+**Album Metadata** | <a href="http://api.v2.musicgraph.com/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02
+**Album Tracks** | <a href="http://api.v2.musicgraph.com/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/tracks
+**Album Edges** | <a href="http://api.v2.musicgraph.com/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/edges?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02/edges
+**Album Search: Album Title** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?title=Houses+Of+The+Holy&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?title=Houses+Of+The+Holy
+**Album Search: Artist Name** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?artist_name=John+Lennon&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?artist_name=John+Lennon
+**Album Search: Produced By** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?produced_by=Rick+Rubin&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?produced_by=Rick+Rubin
+**Album Search: Similar To** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?similar_to=Thriller&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?similar_to=Thriller
+**Album Filter: Country** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?similar_to=21&country=UK&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?similar_to=21&country=UK
+**Album Filter: Decade** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?similar_to=21&decade=1990s&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?similar_to=21&decade=1990s
+**Album Filter: Genre** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?similar_to=21&genre=Rap&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?similar_to=21&genre=Rap
+**Album Filter: Top Rated** | <a href="http://api.v2.musicgraph.com/api/v2/album/search?similar_to=Thriller&top_rated=true&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/search?similar_to=Thriller&top_rated=true
+**Nested Search: Album Tracks** | <a href="http://api.v2.musicgraph.com/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?fields=id,title,tracks.limit(100).fields(id,title,track_artist_id)&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/f0764c86-be44-bc6c-34a4-c899a1272f02?fields=id,title,tracks.limit(100).fields(id,title,track_artist_id)
+
 
 ## Tracks
 
@@ -545,18 +547,144 @@ Parameter | Description
 **lyrics_lang** | Filter track search results by language; see [possible values](#language-codes)
 **lyrics_phrase** | Filter track search results that contain an exact match
 
-### Example Endpoints
+### Examples
 
 Description | Endpoint
 ------------|---------
-**track-meta** | `/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2`
-**track-by-title** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&name=Royals`
-**track-artist_name** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&artist_name=Pink`
-**track-composed_by** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&composed_by=Sting`
-**track-featuring_artist** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&featuring_artist=Rihanna`
-**track-availops-featuring_artist** | `/api/v2/track/**availableoperations?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&featuring_artist=Rihanna`
-**track-artist-decade** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&artist_name=Lorde&decade=2010s`
-**track-inspired-genre** | `/api/v2/track/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&artist_name=Shakira&genre=New Age`
+**Track Metadata** | <a href="http://api.v2.musicgraph.com/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67</a>
+**Track Edges** | <a href="http://api.v2.musicgraph.com/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67/edges?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67/edges</a>**Search: Track Title** | <a href="http://api.v2.musicgraph.com/api/v2/track/search?title=Royals&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/search?title=Royals</a>**Search: Track Artist** | <a href="http://api.v2.musicgraph.com/api/v2/track/search?artist_name=Pink&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/search?artist_name=Pink</a>**Search: Track Composer** | <a href="http://api.v2.musicgraph.com/api/v2/track/search?composed_by=Sting&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/search?composed_by=Sting</a>**Search: Featured Artist** | <a href="http://api.v2.musicgraph.com/api/v2/track/search?featuring_artist=Rihanna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/search?featuring_artist=Rihanna</a>**Search Filter: Decade** | <a href="http://api.v2.musicgraph.com/api/v2/track/search?artist_name=Lorde&decade=2010s&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/search?artist_name=Lorde&decade=2010s</a>
+**Search Filter: Genre** | <a href="http://api.v2.musicgraph.com/api/v2/track/search?artist_name=Shakira&genre=New+Age&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/search?artist_name=Shakira&genre=New+Age</a>
+
+## Advanced Search
+
+In order to build queries that contain more than one criteria (i.e. find artists similar to "Coldplay" from decade x, of genre y, etc.), we've provided two useful "look ahead" API calls, allowing you to retrieve the available graph edges (operations) and values at any point during your query building process. For instance, finding artists similar to Nine Inch Nails is a simple call, but adding the filter "from decade x" requires you to know the possible values of x (decades) given Nine Inch Nails as base, otherwise you might get an empty results list if there are no artists similar to Nine Inch Nails from, say, "1960s."
+
+Similarly, depending on the query you're building, knowing what graph edges are available at each step of your query building process could be key. For instance a recent band like Imagine Dragons might not have any data on artists or bands they've influenced, so the "influenced_by" Artist search operator would not return any results. So knowing this ahead of time would enable you to avoid paths leading to no results.
+
+Let's say we want to built the query: Find pop/rock male artists similar to Coldplay who are from the last decade and who were influenced by Iggy Pop
+
+1. Get similar artists to Coldplay and from those, let's get the available edges with this call:
+
+`curl -v -X GET "http://api.musicgraph.com/api/v1/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=coldplay&available_operations=true"`
+
+Response:
+
+`
+data: [ "produced_by", "influenced", "influenced_by", "gender", "name", "genre", "decade" ]
+`
+
+2. Let's now add the "genre" criteria and see what genres are available for "similar artists to Coldplay":
+
+`curl -v -X GET "http://api.musicgraph.com/api/v1/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=coldplay&genre=available_values"`
+
+Response:
+
+`
+data: [ "Electronic", "Vocal", "Latin", "Pop/Rock", "R&B", "Holiday", "Classical", "Religious", "International" ]
+`
+
+3. Let's pick the genre "Pop/Rock" and find out what edges are now available to traverse:
+
+`
+curl -v -X GET "http://api.musicgraph.com/api/v1/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=coldplay&genre=Pop%2FRock&available_operations=true"
+`
+
+Response:
+
+`
+data: [ "produced_by", "influenced", "influenced_by", "gender", "decade", "name" ]
+`
+
+4. Here, let's find out what artist decades are available
+
+`
+curl -v -X GET "http://api.musicgraph.com/api/v1/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=coldplay&genre=Pop%2FRock&decade=available_values"
+`
+
+Response:
+
+`
+data: [ "1990s", "2000s", "1960s", "1970s", "1980s", "2010s" ]
+`
+
+5. Now plug in the decade parameter and value you need, and find out what operations are available from that point.
+
+`
+curl -v -X GET "http://api.musicgraph.com/api/v1/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=coldplay&genre=Pop%2FRock&decade=2010s&available_operations=true"
+`
+
+Response:
+
+`
+data: [ "produced_by", "influenced", "influenced_by", "gender", "name" ]
+`
+
+6. Pick gender and list the available options:
+
+`
+curl -v -X GET "http://api.musicgraph.com/api/v1/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=coldplay&genre=Pop%2FRock&decade=2010s&gender=available_values"
+`
+
+Response:
+
+`
+data: [ "Both", "Female", "Male" ]
+`
+
+You can keep adding edges and values using these simple "look ahead" calls as shown below:
+
+`
+curl -v -X GET "http://api.musicgraph.com/api/v1/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=coldplay&genre=Pop%2FRock&decade=2010s&gender=Male&available_operations=true"
+`
+
+Response:
+
+`
+data: [ "produced_by", "influenced", "influenced_by", "name" ]
+`
+
+Query: Influenced By values
+
+`
+curl -v -X GET "http://api.musicgraph.com/api/v1/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=coldplay&genre=Pop%2FRock&decade=2010s&gender=Male&influenced_by=available_values"
+`
+
+Response:
+
+`
+data: [ "Derrick May", "Freddie Mercury", "Billy Joel", "Maroon 5", "Iggy Pop", "Neil Young", "Matchbox Twenty", "The Chameleons UK", "Nick Drake", "The Jesus Lizard", "Paul McCartney", ... ]
+`
+
+Query: Influenced by - concluding query
+
+`
+curl -v -X GET "http://api.musicgraph.com/api/v1/artist/search?api_key=c26e63de67a52b71cfcb1b2fb63a14f2&similar_to=coldplay&genre=Pop%2FRock&decade=2010s&gender=Male&influenced_by=Iggy+Pop"
+`
+
+Response:
+
+`
+data: [ .. desired artist ]
+`
+
+### Examples
+
+Description | Endpoint
+------------|---------
+
+**Available Operations: Influenced By** | <a href="http://api.v2.musicgraph.com/api/v2/artist/available-operations?influenced_by=madonna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/available-operations?influenced_by=madonna</a>
+**Available Operations: Gender** | <a href="http://api.v2.musicgraph.com/api/v2/artist/available-operations?similar_to=madonna&gender=male&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/available-operations?similar_to=madonna&gender=male</a>
+**ARTIST-AVAILVALS-GENDER** | <a href="http://api.v2.musicgraph.com/api/v2/artist/available-values/gender?similar_to=madonna&gender=male&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/available-values/gender?similar_to=madonna&gender=male</a>
+**ARTIST-AVAILVALS-GENRE** | <a href="http://api.v2.musicgraph.com/api/v2/artist/available-values/genre?similar_to=madonna&gender=male&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/available-values/genre?similar_to=madonna&gender=male</a>
+**ARTIST-AVAILVALS-GENRE** | <a href="http://api.v2.musicgraph.com/api/v2/artist/available-values/playing_style?similar_to=madonna&gender=male&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/artist/available-values/playing_style?similar_to=madonna&gender=male</a>
+**ALBUM-AVAILOPS-SIMILAR-TO** | <a href="http://api.v2.musicgraph.com/api/v2/album/available-operations?similar_to=Thriller&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/available-operations?similar_to=Thriller</a>
+**ALBUM-AVAILOPS-SIMILAR-TOP-RATED** | <a href="http://api.v2.musicgraph.com/api/v2/album/available-operations?similar_to=Thriller&top_rated=true&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/available-operations?similar_to=Thriller&top_rated=true</a>
+**ALBUM-AVAILVALS-SIMILAR-MOOD** | <a href="http://api.v2.musicgraph.com/api/v2/album/available-values/mood?similar_to=Thriller&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/available-values/mood?similar_to=Thriller</a>
+**ALBUM-AVAILVALS-SIMILAR-MOOD-DECADE** | <a href="http://api.v2.musicgraph.com/api/v2/album/available-values/decade?similar_to=Thriller&mood=Playful&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/album/available-values/decade?similar_to=Thriller&mood=Playful</a>
+**TRACK-AVAILOPS-FEATURING_ARTIST** | <a href="http://api.v2.musicgraph.com/api/v2/track/available-operations?featuring_artist=Rihanna&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/available-operations?featuring_artist=Rihanna</a>
+**TRACK-AVAILVALS-TITLE-GENRE** | <a href="http://api.v2.musicgraph.com/api/v2/track/available-values/genre?title=Thriller&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/available-values/genre?title=Thriller</a>
+**TRACK-AVAILVALS-TITLE-GENRE-ECADE** | <a href="http://api.v2.musicgraph.com/api/v2/track/available-values/decade?title=Thriller&genre=Holiday&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/available-values/decade?title=Thriller&genre=Holiday</a>
+**TRACK-AVAILVALS-TITLE-LYRICS_LANG** | <a href="http://api.v2.musicgraph.com/api/v2/track/available-values/lyrics_lang?title=Thriller&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/available-values/lyrics_lang?title=Thriller</a>
 
 # Playlist API
 
@@ -619,11 +747,11 @@ Parameter | Description
 ----------|------------
 **artist_id** | Generate a playlist with a seed artist
 
-### Example Endpoints
+### Examples
 
 Description | Endpoint
 ------------|---------
-**playlist-artist-id** | `/api/v2/playlist?api_key=c8e73991124fd6b5e8a62c4f7160496d&artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67`
+**Artist Playlist** | <a href="http://api.v2.musicgraph.com/api/v2/playlist?artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67&api_key=c8e73991124fd6b5e8a62c4f7160496d" target="_blank">/api/v2/playlist?artist_id=ee2564c7-a6b5-11e0-b446-00251188dd67</a>
 
 # Music Data API
 
@@ -634,9 +762,9 @@ The Music Data API provides detailed data about:
 
 For more details please [check out our plans](https://developer.musicgraph.com/#plans) and get your free API key today.
 
-## Artist Metrics Data
+## Artist Metrics
 
-> *Search for metrics using Pearl Jam as the artist...*
+> *Lookup artist metrics for Pearl Jam...*
 
 ```shell
 $ curl "http://api.v2.musicgraph.com/api/v2/e2ffceb5-a6b5-11e0-b446-00251188dd67/metrics?&api_key=fcffa99e795c2f3996c843fd8069ee36"
@@ -807,17 +935,17 @@ Resource URL | Description
 `/api/v2/artist/[id]/metrics/twitter` | Retrieve Twitter metrics data
 `/api/v2/artist/[id]/metrics/vevo` | Retrieve Vevo metrics data
 
-### Example Endpoints
+### Examples
 
 Description | Endpoint
 ------------|---------
-**artist-metrics** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?api_key=fcffa99e795c2f3996c843fd8069ee36`
-**artist-metrics-facebook** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?api_key=fcffa99e795c2f3996c843fd8069ee36`
-**artist-metrics-lastfm** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?api_key=fcffa99e795c2f3996c843fd8069ee36`
-**artist-metrics-twitter** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?api_key=fcffa99e795c2f3996c843fd8069ee36`
-**artist-metrics-vevo** | `/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?api_key=fcffa99e795c2f3996c843fd8069ee36`
+**Artist Metrics** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics?fcffa99e795c2f3996c843fd8069ee36" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics</a>
+**Artist FB Metrics** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook?fcffa99e795c2f3996c843fd8069ee36" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/facebook</a>
+**Artist Last FM Metrics** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm?fcffa99e795c2f3996c843fd8069ee36" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/lastfm</a>
+**Artist Twitter Metrics** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter?fcffa99e795c2f3996c843fd8069ee36" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/twitter</a>
+**Artist Vevo Metrics** | <a href="http://api.v2.musicgraph.com/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo?fcffa99e795c2f3996c843fd8069ee36" target="_blank">/api/v2/artist/ee2564c7-a6b5-11e0-b446-00251188dd67/metrics/vevo</a>
 
-## Track Lyrical Features
+## Track Lyrics
 
 > *Retrieve lyrical features for Adele's "Right As Rain"...*
 
@@ -877,6 +1005,16 @@ The base URL path for track lyrical features is:
 Resource URL | Description
 -------------|------------
 `/api/v2/track/[id]/lyrical_features` | Retrieve lyrical features for a track
+
+### Examples
+
+Description | Endpoint
+------------|---------
+**Track Lyric Phrase** | <a href="http://api.v2.musicgraph.com/api/v2/api/v2/track/search?artist_name=Coldplay&lyrics_phrase=pop&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/search?artist_name=Coldplay&lyrics_phrase=pop</a>
+**Track Lyric Keywords** | <a href="http://api.v2.musicgraph.com/api/v2/api/v2/track/search?artist_name=Coldplay&lyrics_keywords=fly&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/search?artist_name=Coldplay&lyrics_keywords=fly</a>
+**Track Lyric Language** | <a href="http://api.v2.musicgraph.com/api/v2/api/v2/track/search?artist_name=Coldplay&lyrics_lang=es&api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/search?artist_name=Coldplay&lyrics_lang=es</a>
+**Track Lyric Features** | <a href="http://api.v2.musicgraph.com/api/v2/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67/lyrical-features?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67/lyrical-features</a>
+**Track Acoustical Features** | <a href="http://api.v2.musicgraph.com/api/v2/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67/acoustical-features?api_key=c26e63de67a52b71cfcb1b2fb63a14f2" target="_blank">/api/v2/track/f05e067b-a6c0-11e0-b446-00251188dd67/acoustical-features</a>
 
 # Type Dictionary
 
