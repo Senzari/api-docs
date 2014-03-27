@@ -1,28 +1,8 @@
-/*
-Copyright 2008-2013 Concur Technologies, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may
-not use this file except in compliance with the License. You may obtain
-a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-License for the specific language governing permissions and limitations
-under the License.
-*/
-
 
 ////////////////////////////////////////////////////////////////////////////////
-// CUSTOMIZE SLATE
-////////////////////////////////////////////////////////////////////////////////
-// Use these settings to help adjust the appearance of Slate
-
-
 // BACKGROUND COLORS
-////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 $nav-bg: #ededed;
 $examples-bg: #393939;
 $code-bg: #292929;
@@ -39,9 +19,10 @@ $aside-warning-bg: #c97a7e;
 $aside-success-bg: #6ac174;
 $menubar-bg: #005371;
 
-
+////////////////////////////////////////////////////////////////////////////////
 // TEXT COLORS
-////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 $main-text: #333; // main content text color
 $nav-text: #2467af;
 $nav-active-text: #ededed;
@@ -49,9 +30,10 @@ $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
 
-
+////////////////////////////////////////////////////////////////////////////////
 // SIZES
-////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 $nav-width: 185px; // width of the navbar
 $examples-width: 50%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo
@@ -65,9 +47,10 @@ $menubar-height: 60px; // height of the top menubar
 $nav-top: 75px; // height of the top menubar
 $content-top: 75px;
 
-
+////////////////////////////////////////////////////////////////////////////////
 // FONTS
-////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 %default-font {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
@@ -83,20 +66,15 @@ $content-top: 75px;
   font-size: 11x;
 }
 
-
+////////////////////////////////////////////////////////////////////////////////
 // OTHER
-////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 $nav-active-shadow: #000;
 $nav-footer-border-color: #666;
 $nav-embossed-border-top: 1px solid #000;
 $nav-embossed-border-bottom: 1px solid #404040;
 $main-embossed-text-shadow: 0px 1px 0px #fff;
-
-
-////////////////////////////////////////////////////////////////////////////////
-// INTERNAL
-////////////////////////////////////////////////////////////////////////////////
-// These settings are probably best left alone.
 
 %break-words {
  -ms-word-break: break-all;
